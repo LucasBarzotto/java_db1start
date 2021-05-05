@@ -6,7 +6,7 @@ public class Main {
 
         PasswordMeterV1 myPassword = new PasswordMeterV1();
 
-        myPassword.checkPassword("a1b5d4s8d4s");
+        myPassword.checkPassword("a23b#c12@a33!");
         System.out.println(myPassword);
 
     }
