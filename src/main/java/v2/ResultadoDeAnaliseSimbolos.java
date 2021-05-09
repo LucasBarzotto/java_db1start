@@ -1,12 +1,12 @@
 package v2;
 
-public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
+public class ResultadoDeAnaliseSimbolos extends ResultadoDeAnalise {
     private int contagem;
     private int bonus;
     private TipoEstado estado;
     private TipoOperacao tipoOperacao;
 
-    public ResultadoDeAnaliseNumeroCaracteres(String senha) {
+    public ResultadoDeAnaliseSimbolos(String senha) {
         super(senha);
         this.tipoOperacao = TipoOperacao.INCREMENTADOR;
         this.calcularResultado(senha);
@@ -14,10 +14,12 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
     }
 
     private void calcularResultado(String senha) {
-        this.contagem = senha.length();
+
+        var contador = new ContadorDeOcorrencias();
+        this.contagem = contador.contarOcorrenciasDeAcordoComRegex(senha, "[^a-zA-Z0-9_]");
 
         if (this.contagem > 0) {
-            int multiplicador = 4;
+            int multiplicador = 6;
             this.bonus = this.contagem * multiplicador;
         } else {
             this.bonus = 0;
@@ -25,9 +27,9 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
     }
 
     private void calcularEstado() {
-        if (this.contagem < TamanhoMinimoSenha.MIN.valor) {
+        if (this.contagem == 0) {
             this.estado = TipoEstado.FALHA;
-        } else if (this.contagem == TamanhoMinimoSenha.MIN.valor) {
+        } else if (this.contagem == 1) {
             this.estado = TipoEstado.SUFICIENTE;
         } else {
             this.estado = TipoEstado.EXCEPCIONAL;

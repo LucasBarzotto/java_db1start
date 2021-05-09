@@ -1,7 +1,7 @@
 package v2;
 
 public enum TipoEstado {
-    EXCELENTE,
+    EXCEPCIONAL,
     SUFICIENTE,
     ALERTA,
     FALHA

@@ -1,12 +1,12 @@
 package v2;
 
-public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
+public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
     private int contagem;
     private int bonus;
     private TipoEstado estado;
     private TipoOperacao tipoOperacao;
 
-    public ResultadoDeAnaliseNumeroCaracteres(String senha) {
+    public ResultadoDeAnaliseRequerimentos(String senha) {
         super(senha);
         this.tipoOperacao = TipoOperacao.INCREMENTADOR;
         this.calcularResultado(senha);
@@ -14,10 +14,12 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
     }
 
     private void calcularResultado(String senha) {
-        this.contagem = senha.length();
 
-        if (this.contagem > 0) {
-            int multiplicador = 4;
+        var contador = new ContadorDeOcorrencias();
+        this.contagem = contador.contarOcorrenciasDeRequerimentos(senha);
+
+        if (senha.length() >= TamanhoMinimoSenha.MIN.valor && this.contagem > 3) {
+            int multiplicador = 2;
             this.bonus = this.contagem * multiplicador;
         } else {
             this.bonus = 0;
@@ -25,12 +27,12 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
     }
 
     private void calcularEstado() {
-        if (this.contagem < TamanhoMinimoSenha.MIN.valor) {
-            this.estado = TipoEstado.FALHA;
-        } else if (this.contagem == TamanhoMinimoSenha.MIN.valor) {
+        if (senha.length() >= TamanhoMinimoSenha.MIN.valor && this.contagem == 5) {
+            this.estado = TipoEstado.EXCEPCIONAL;
+        } else if (senha.length() >= TamanhoMinimoSenha.MIN.valor && this.contagem == 4) {
             this.estado = TipoEstado.SUFICIENTE;
         } else {
-            this.estado = TipoEstado.EXCEPCIONAL;
+            this.estado = TipoEstado.FALHA;
         }
     }
 

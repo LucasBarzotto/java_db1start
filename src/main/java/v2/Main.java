@@ -4,9 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        VerificadorDeForcaDeSenha verificadorDeForcaDeSenha = new VerificadorDeForcaDeSenha("1112");
+        var verificadorDeForcaDeSenha = new VerificadorDeForcaDeSenha("Lu#3lucas");
 
-        verificadorDeForcaDeSenha.verificar();
+        verificadorDeForcaDeSenha.calcularScore();
+
+        System.out.println(verificadorDeForcaDeSenha.obterScore());
 
     }
 
