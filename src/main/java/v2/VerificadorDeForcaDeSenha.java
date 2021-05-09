@@ -15,23 +15,29 @@ public class VerificadorDeForcaDeSenha {
     public void calcularScore(){
 
         ArrayList<ResultadoDeAnalise> listaDeAnalises = new ArrayList<>();
+        ContadorDeOcorrencias contador = new ContadorDeOcorrencias(this.senha);
+        CalculadorDeBonus calculador = new CalculadorDeBonus(this.senha);
 
         // ADDITIONS
-        listaDeAnalises.add(new ResultadoDeAnaliseNumeroCaracteres(this.senha));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculas(this.senha));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculas(this.senha));
-        listaDeAnalises.add(new ResultadoDeAnaliseNumeros(this.senha));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolos(this.senha));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosENumerosNoMeio(this.senha));
-        listaDeAnalises.add(new ResultadoDeAnaliseRequerimentos(this.senha));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumeroCaracteres(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculas(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculas(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumeros(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseSimbolos(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosENumerosNoMeio(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseRequerimentos(this.senha, contador, calculador));
 
         // DEDUCTIONS
+        //listaDeAnalises.add(new ResultadoDeAnaliseApenasLetras(this.senha));
+        //listaDeAnalises.add(new ResultadoDeAnaliseApenasNumeros(this.senha));
+        //listaDeAnalises.add(new ResultadoDeAnaliseCaracteresRepetidos(this.senha));
 
         // CALCULO
 
         for (ResultadoDeAnalise analise : listaDeAnalises) {
             this.score += analise.obterBonus();
-            System.out.println(analise.obterEstado());
+            System.out.print(analise.obterEstado() + ": ");
+            System.out.println(analise.obterBonus());
         }
     }
 

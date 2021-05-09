@@ -8,7 +8,11 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres("");
+        String senha = "";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -17,7 +21,11 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverCaracteresAbaixoDoMinimo() {
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres("123456");
+        String senha = "123456";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
+
         assertEquals(6, resultado.obterContagem());
         assertEquals(24, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -26,7 +34,11 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverCaracteresIgualAoMinimo() {
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres("abc123de");
+        String senha = "abc123de";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
+
         assertEquals(8, resultado.obterContagem());
         assertEquals(32, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
@@ -35,7 +47,11 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverCaracteresAcimaDoMinimo() {
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres("abc123de@#");
+        String senha = "abc123de@#";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
+
         assertEquals(10, resultado.obterContagem());
         assertEquals(40, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());

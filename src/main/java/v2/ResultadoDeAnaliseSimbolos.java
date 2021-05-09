@@ -5,25 +5,26 @@ public class ResultadoDeAnaliseSimbolos extends ResultadoDeAnalise {
     private int bonus;
     private TipoEstado estado;
     private TipoOperacao tipoOperacao;
+    private ContadorDeOcorrencias contadorDeOcorrencias;
+    private CalculadorDeBonus calculadorDeBonus;
 
-    public ResultadoDeAnaliseSimbolos(String senha) {
+    public ResultadoDeAnaliseSimbolos (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha);
         this.tipoOperacao = TipoOperacao.INCREMENTADOR;
-        this.calcularResultado(senha);
+        this.contadorDeOcorrencias = contador;
+        this.calculadorDeBonus = calculador;
+        this.calcularResultado();
         this.calcularEstado();
     }
 
-    private void calcularResultado(String senha) {
+    private void calcularResultado() {
 
-        var contador = new ContadorDeOcorrencias();
-        this.contagem = contador.contarOcorrenciasDeAcordoComRegex(senha, "[^a-zA-Z0-9_]");
+        int multiplicador = 6;
 
-        if (this.contagem > 0) {
-            int multiplicador = 6;
-            this.bonus = this.contagem * multiplicador;
-        } else {
-            this.bonus = 0;
-        }
+        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeAcordoComRegex("[^a-zA-Z0-9_]");
+        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
+        this.contadorDeOcorrencias.setContagemSimbolos(this.contagem);
+
     }
 
     private void calcularEstado() {

@@ -5,31 +5,31 @@ public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
     private int bonus;
     private TipoEstado estado;
     private TipoOperacao tipoOperacao;
+    private ContadorDeOcorrencias contadorDeOcorrencias;
+    private CalculadorDeBonus calculadorDeBonus;
 
-    public ResultadoDeAnaliseRequerimentos(String senha) {
+    public ResultadoDeAnaliseRequerimentos (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha);
         this.tipoOperacao = TipoOperacao.INCREMENTADOR;
-        this.calcularResultado(senha);
+        this.contadorDeOcorrencias = contador;
+        this.calculadorDeBonus = calculador;
+        this.calcularResultado();
         this.calcularEstado();
     }
 
-    private void calcularResultado(String senha) {
+    private void calcularResultado() {
 
-        var contador = new ContadorDeOcorrencias();
-        this.contagem = contador.contarOcorrenciasDeRequerimentos(senha);
+        int multiplicador = 2;
 
-        if (senha.length() >= TamanhoMinimoSenha.MIN.valor && this.contagem > 3) {
-            int multiplicador = 2;
-            this.bonus = this.contagem * multiplicador;
-        } else {
-            this.bonus = 0;
-        }
+        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeRequerimentos();
+        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoRequerimento(this.contagem, multiplicador);
+
     }
 
     private void calcularEstado() {
-        if (senha.length() >= TamanhoMinimoSenha.MIN.valor && this.contagem == 5) {
+        if (senha.length() >= TamanhoMinimo.SENHA.valor && this.contagem == 5) {
             this.estado = TipoEstado.EXCEPCIONAL;
-        } else if (senha.length() >= TamanhoMinimoSenha.MIN.valor && this.contagem == 4) {
+        } else if (senha.length() >= TamanhoMinimo.SENHA.valor && this.contagem == 4) {
             this.estado = TipoEstado.SUFICIENTE;
         } else {
             this.estado = TipoEstado.FALHA;

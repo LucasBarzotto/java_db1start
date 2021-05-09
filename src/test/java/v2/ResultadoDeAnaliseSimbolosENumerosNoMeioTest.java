@@ -8,7 +8,11 @@ class ResultadoDeAnaliseSimbolosENumerosNoMeioTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
-        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio("");
+        String senha = "";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -17,7 +21,11 @@ class ResultadoDeAnaliseSimbolosENumerosNoMeioTest {
 
     @Test
     void deveObterValoresZeradosQuandoSenhaNaoContiverMid() {
-        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio(("!ASUHjsn3"));
+        String senha = "!ASUHjsn3";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -26,7 +34,11 @@ class ResultadoDeAnaliseSimbolosENumerosNoMeioTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverUmMid() {
-        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio(("!Ah#naU5"));
+        String senha = "!Ah#naU5";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio(senha, contador, calculador);
+
         assertEquals(1, resultado.obterContagem());
         assertEquals(2, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
@@ -35,7 +47,11 @@ class ResultadoDeAnaliseSimbolosENumerosNoMeioTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverMaisDeUmMid() {
-        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio(("!qwAh#na4Uas4d5"));
+        String senha = "!qwAh#na4Uas4d5";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolosENumerosNoMeio(senha, contador, calculador);
+
         assertEquals(3, resultado.obterContagem());
         assertEquals(6, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());

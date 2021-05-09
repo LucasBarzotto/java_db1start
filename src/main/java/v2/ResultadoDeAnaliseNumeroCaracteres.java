@@ -5,29 +5,32 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
     private int bonus;
     private TipoEstado estado;
     private TipoOperacao tipoOperacao;
+    private ContadorDeOcorrencias contadorDeOcorrencias;
+    private CalculadorDeBonus calculadorDeBonus;
 
-    public ResultadoDeAnaliseNumeroCaracteres(String senha) {
+    public ResultadoDeAnaliseNumeroCaracteres(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha);
         this.tipoOperacao = TipoOperacao.INCREMENTADOR;
-        this.calcularResultado(senha);
+        this.contadorDeOcorrencias = contador;
+        this.calculadorDeBonus = calculador;
+        this.calcularResultado();
         this.calcularEstado();
     }
 
-    private void calcularResultado(String senha) {
-        this.contagem = senha.length();
+    private void calcularResultado() {
 
-        if (this.contagem > 0) {
-            int multiplicador = 4;
-            this.bonus = this.contagem * multiplicador;
-        } else {
-            this.bonus = 0;
-        }
+        int multiplicador = 4;
+
+        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasNumeroDeCaracteres();
+        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
+        this.contadorDeOcorrencias.setContagemNumeroCaracteres(this.contagem);
+
     }
 
     private void calcularEstado() {
-        if (this.contagem < TamanhoMinimoSenha.MIN.valor) {
+        if (this.contagem < TamanhoMinimo.SENHA.valor) {
             this.estado = TipoEstado.FALHA;
-        } else if (this.contagem == TamanhoMinimoSenha.MIN.valor) {
+        } else if (this.contagem == TamanhoMinimo.SENHA.valor) {
             this.estado = TipoEstado.SUFICIENTE;
         } else {
             this.estado = TipoEstado.EXCEPCIONAL;

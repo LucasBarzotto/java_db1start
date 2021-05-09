@@ -8,7 +8,11 @@ class ResultadoDeAnaliseLetrasMinusculasTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
-        var resultado = new ResultadoDeAnaliseLetrasMinusculas("");
+        String senha = "";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -17,7 +21,11 @@ class ResultadoDeAnaliseLetrasMinusculasTest {
 
     @Test
     void deveObterValoresZeradosQuandoSenhaNaoContiverCaracteresMinusculos() {
-        var resultado = new ResultadoDeAnaliseLetrasMinusculas(("1ABC#23456"));
+        String senha = "1ABC#23456";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -26,7 +34,11 @@ class ResultadoDeAnaliseLetrasMinusculasTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverUmCaractereMinusculo() {
-        var resultado = new ResultadoDeAnaliseLetrasMinusculas(("AS@d123A456"));
+        String senha = "AS@d123A456";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador);
+
         assertEquals(1, resultado.obterContagem());
         assertEquals(20, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
@@ -35,7 +47,11 @@ class ResultadoDeAnaliseLetrasMinusculasTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverMaisQueUmCaractereMinusculo() {
-        var resultado = new ResultadoDeAnaliseLetrasMinusculas(("Das#d123A456Z"));
+        String senha = "Das#d123A456Z";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador);
+
         assertEquals(3, resultado.obterContagem());
         assertEquals(20, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());

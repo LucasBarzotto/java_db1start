@@ -8,7 +8,13 @@ class ResultadoDeAnaliseRequerimentosTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
-        var resultado = new ResultadoDeAnaliseRequerimentos("");
+        String senha = "";
+
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+
+        var resultado = testSetup(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -17,7 +23,13 @@ class ResultadoDeAnaliseRequerimentosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaMenorQueTamanhoMinimo() {
-        var resultado = new ResultadoDeAnaliseRequerimentos(("A3#gacA"));
+        String senha = "A3#gacA";
+
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+
+        var resultado = testSetup(senha, contador, calculador);
+
         assertEquals(4, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -26,7 +38,13 @@ class ResultadoDeAnaliseRequerimentosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaNaoContiverRequerimentosSuficientes() {
-        var resultado = new ResultadoDeAnaliseRequerimentos(("AbcdeOUHShaso"));
+        String senha = "AbcdeOUHShaso";
+
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+
+        var resultado = testSetup(senha, contador, calculador);
+
         assertEquals(3, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -35,7 +53,13 @@ class ResultadoDeAnaliseRequerimentosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverRequerimentosSuficientes() {
-        var resultado = new ResultadoDeAnaliseRequerimentos(("AbcdeOUHShaso1"));
+        String senha = "AbcdeOUHShaso1";
+
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+
+        var resultado = testSetup(senha, contador, calculador);
+
         assertEquals(4, resultado.obterContagem());
         assertEquals(8, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
@@ -44,10 +68,27 @@ class ResultadoDeAnaliseRequerimentosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverRequerimentosExcepcionais() {
-        var resultado = new ResultadoDeAnaliseRequerimentos(("Abcde#OUHShaso1"));
+        String senha = "Abcde#OUHShaso1";
+
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+
+        var resultado = testSetup(senha, contador, calculador);
+
         assertEquals(5, resultado.obterContagem());
         assertEquals(10, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
         assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+    }
+
+    private ResultadoDeAnaliseRequerimentos testSetup (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
+        var res1 = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
+        var res2 = new ResultadoDeAnaliseLetrasMaiusculas(senha, contador, calculador);
+        var res3 = new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador);
+        var res4 = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
+        var res5 = new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
+
+        var resultado = new ResultadoDeAnaliseRequerimentos(senha, contador, calculador);
+        return resultado;
     }
 }

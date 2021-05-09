@@ -5,26 +5,25 @@ public class ResultadoDeAnaliseNumeros extends ResultadoDeAnalise {
     private int bonus;
     private TipoEstado estado;
     private TipoOperacao tipoOperacao;
+    private ContadorDeOcorrencias contadorDeOcorrencias;
+    private CalculadorDeBonus calculadorDeBonus;
 
-    public ResultadoDeAnaliseNumeros(String senha) {
+    public ResultadoDeAnaliseNumeros (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha);
         this.tipoOperacao = TipoOperacao.INCREMENTADOR;
-        this.calcularResultado(senha);
+        this.contadorDeOcorrencias = contador;
+        this.calculadorDeBonus = calculador;
+        this.calcularResultado();
         this.calcularEstado();
     }
 
-    private void calcularResultado(String senha) {
+    private void calcularResultado() {
 
-        var contador = new ContadorDeOcorrencias();
-        this.contagem = contador.contarOcorrenciasDeAcordoComRegex(senha, "[0-9]");
+        int multiplicador = 4;
 
-        if (this.contagem > 0 && this.contagem < senha.length()) {
-            int multiplicador = 4;
-            this.bonus = this.contagem * multiplicador;
-        } else {
-            this.contagem = 0;
-            this.bonus = 0;
-        }
+        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeAcordoComRegex("[0-9]");
+        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoCondicao(this.contagem, multiplicador);
+        this.contadorDeOcorrencias.setContagemNumeros(this.contagem);
 
     }
 

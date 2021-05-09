@@ -5,26 +5,25 @@ public class ResultadoDeAnaliseLetrasMaiusculas extends ResultadoDeAnalise {
     private int bonus;
     private TipoEstado estado;
     private TipoOperacao tipoOperacao;
+    private ContadorDeOcorrencias contadorDeOcorrencias;
+    private CalculadorDeBonus calculadorDeBonus;
 
-    public ResultadoDeAnaliseLetrasMaiusculas(String senha) {
+    public ResultadoDeAnaliseLetrasMaiusculas(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha);
         this.tipoOperacao = TipoOperacao.INCREMENTADOR;
-        this.calcularResultado(senha);
+        this.contadorDeOcorrencias = contador;
+        this.calculadorDeBonus = calculador;
+        this.calcularResultado();
         this.calcularEstado();
     }
 
-    private void calcularResultado(String senha) {
+    private void calcularResultado() {
 
-        var contador = new ContadorDeOcorrencias();
-        this.contagem = contador.contarOcorrenciasDeAcordoComRegex(senha, "[A-Z]");
+        int multiplicador = 2;
 
-        if (this.contagem > 0 && this.contagem < senha.length()) {
-            int multiplicador = 2;
-            this.bonus = (senha.length() - this.contagem) * multiplicador;
-        } else {
-            this.contagem = 0;
-            this.bonus = 0;
-        }
+        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeAcordoComRegex("[A-Z]");
+        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoCondicaoIncremento(this.contagem, multiplicador);
+        this.contadorDeOcorrencias.setContagemLetrasMaiusculas(this.contagem);
 
     }
 

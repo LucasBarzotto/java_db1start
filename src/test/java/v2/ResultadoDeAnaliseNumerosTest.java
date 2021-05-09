@@ -8,7 +8,11 @@ class ResultadoDeAnaliseNumerosTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
-        var resultado = new ResultadoDeAnaliseNumeros("");
+        String senha = "";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -17,7 +21,11 @@ class ResultadoDeAnaliseNumerosTest {
 
     @Test
     void deveObterValoresZeradosQuandoSenhaNaoContiverNumeros() {
-        var resultado = new ResultadoDeAnaliseNumeros(("ASUH#jsasn$"));
+        String senha = "ASUH#jsasn$";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -26,7 +34,11 @@ class ResultadoDeAnaliseNumerosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverUmNumero() {
-        var resultado = new ResultadoDeAnaliseNumeros(("ASDIj2as(#"));
+        String senha = "ASDIj2as(#";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
+
         assertEquals(1, resultado.obterContagem());
         assertEquals(4, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
@@ -35,9 +47,26 @@ class ResultadoDeAnaliseNumerosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverMaisQueUmNumero() {
-        var resultado = new ResultadoDeAnaliseNumeros(("A2SD3Ij2as(#"));
+        String senha = "A2SD3Ij2as(#";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
+
         assertEquals(3, resultado.obterContagem());
         assertEquals(12, resultado.obterBonus());
+        assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
+        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+    }
+
+    @Test
+    void deveObterValoresEsperadosQuandoSenhaContiverApenasNumeros() {
+        String senha = "665165184982";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
+
+        assertEquals(12, resultado.obterContagem());
+        assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
         assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
     }

@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var verificadorDeForcaDeSenha = new VerificadorDeForcaDeSenha("Lu#3lucas");
+        var verificadorDeForcaDeSenha = new VerificadorDeForcaDeSenha("Lusca123321@");
 
         verificadorDeForcaDeSenha.calcularScore();
 

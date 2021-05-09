@@ -8,7 +8,11 @@ class ResultadoDeAnaliseSimbolosTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
-        var resultado = new ResultadoDeAnaliseSimbolos("");
+        String senha = "";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -17,7 +21,11 @@ class ResultadoDeAnaliseSimbolosTest {
 
     @Test
     void deveObterValoresZeradosQuandoSenhaNaoContiverSimbolos() {
-        var resultado = new ResultadoDeAnaliseSimbolos(("ASUH1jsn3"));
+        String senha = "ASUH1jsn3";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
+
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
@@ -26,7 +34,11 @@ class ResultadoDeAnaliseSimbolosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverUmSimbolo() {
-        var resultado = new ResultadoDeAnaliseSimbolos(("AS@d123A456"));
+        String senha = "AS@d123A456";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
+
         assertEquals(1, resultado.obterContagem());
         assertEquals(6, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
@@ -35,9 +47,26 @@ class ResultadoDeAnaliseSimbolosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverMaisQueUmSimbolo() {
-        var resultado = new ResultadoDeAnaliseSimbolos(("Das#d123A4@!56Z"));
+        String senha = "Das#d123A4@!56Z";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
+
         assertEquals(3, resultado.obterContagem());
         assertEquals(18, resultado.obterBonus());
+        assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
+        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+    }
+
+    @Test
+    void deveObterValoresEsperadosQuandoSenhaContiverApenasSimbolos() {
+        String senha = "%#@@%$#$#@*()";
+        var contador = new ContadorDeOcorrencias(senha);
+        var calculador = new CalculadorDeBonus(senha);
+        var resultado = new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
+
+        assertEquals(13, resultado.obterContagem());
+        assertEquals(78, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
         assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
     }
