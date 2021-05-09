@@ -66,31 +66,21 @@ public class ContadorDeOcorrencias {
 
     public int contarOcorrenciasCasoHajaApenasLetras() {
         int contagem = 0;
-/*
-        var letrasMaiusculas = new ResultadoDeAnaliseLetrasMaiusculas(this.senha);
-        var letrasMinusculas = new ResultadoDeAnaliseLetrasMinusculas(this.senha);
-        var numeros = new ResultadoDeAnaliseNumeros(this.senha);
-        var simbolos = new ResultadoDeAnaliseSimbolos(this.senha);
 
-        if ((letrasMaiusculas.obterContagem() > 0 || letrasMinusculas.obterContagem() > 0) && simbolos.obterContagem() == 0 && numeros.obterContagem() == 0) {
+        if ((this.contagemLetrasMaiusculas > 0 || this.contagemLetrasMinusculas > 0) && this.contagemSimbolos == 0 && this.contagemNumeros == 0) {
             contagem = this.senha.length();
         }
-*/
+
         return contagem;
     }
 
     public int contarOcorrenciasCasoHajaApenasNumeros() {
         int contagem = 0;
-/*
-        var letrasMaiusculas = new ResultadoDeAnaliseLetrasMaiusculas(this.senha);
-        var letrasMinusculas = new ResultadoDeAnaliseLetrasMinusculas(this.senha);
-        var numeros = new ResultadoDeAnaliseNumeros(this.senha);
-        var simbolos = new ResultadoDeAnaliseSimbolos(this.senha);
 
-        if (numeros.obterContagem() > 0 && letrasMinusculas.obterContagem() == 0 && simbolos.obterContagem() == 0 && letrasMaiusculas.obterContagem() == 0) {
+        if (this.contagemLetrasMinusculas == 0 && this.contagemLetrasMaiusculas == 0 && this.contagemSimbolos == 0 && this.contagemNumeros > 0) {
             contagem = this.senha.length();
         }
-*/
+
         return contagem;
     }
 
@@ -107,6 +97,38 @@ public class ContadorDeOcorrencias {
             }
         }
 
+        return contagem;
+    }
+
+    public int contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex(String regex) {
+        String[] caracteresDaSenha = this.senha.replaceAll("\\s+", "").split("\\s*");
+        int contagem = 0;
+        Integer auxiliar = null;
+
+        for (int i = 0; i < caracteresDaSenha.length; i++) {
+            if (caracteresDaSenha[i].matches(regex)) {
+                if (auxiliar != null) {
+                    if (auxiliar + 1 == i) {
+                        contagem++;
+                    }
+                }
+                auxiliar = i;
+            }
+        }
+        return contagem;
+    }
+
+    public int contarOcorrenciasLetrasSequenciais(String letras) {
+        int tamanho = letras.length() - 3;
+        int contagem = 0;
+
+        for (int i = 0; i < tamanho; i++) {
+            String tresCharSequenciais = letras.substring(i, i + 3);
+            String tresCharSequenciaisReversos = new StringBuilder(tresCharSequenciais).reverse().toString();
+            if (this.senha.toLowerCase().contains(tresCharSequenciais) || this.senha.toLowerCase().contains(tresCharSequenciaisReversos)) {
+                contagem++;
+            }
+        }
         return contagem;
     }
 
@@ -129,4 +151,5 @@ public class ContadorDeOcorrencias {
     public void setContagemSimbolos(int contagemSimbolos) {
         this.contagemSimbolos = contagemSimbolos;
     }
+
 }

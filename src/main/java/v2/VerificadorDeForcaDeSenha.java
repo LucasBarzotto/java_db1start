@@ -28,9 +28,15 @@ public class VerificadorDeForcaDeSenha {
         listaDeAnalises.add(new ResultadoDeAnaliseRequerimentos(this.senha, contador, calculador));
 
         // DEDUCTIONS
-        //listaDeAnalises.add(new ResultadoDeAnaliseApenasLetras(this.senha));
-        //listaDeAnalises.add(new ResultadoDeAnaliseApenasNumeros(this.senha));
-        //listaDeAnalises.add(new ResultadoDeAnaliseCaracteresRepetidos(this.senha));
+        listaDeAnalises.add(new ResultadoDeAnaliseApenasLetras(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseApenasNumeros(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseCaracteresRepetidos(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculasConsecutivas(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculasConsecutivas(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumerosConsecutivos(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasSequenciais(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumerosSequenciais(this.senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosSequenciais(this.senha, contador, calculador));
 
         // CALCULO
 
