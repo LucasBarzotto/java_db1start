@@ -10,6 +10,8 @@ public class VerificadorDeForcaDeSenha {
 
     public VerificadorDeForcaDeSenha(String senha) {
         this.senha = senha;
+        calcularScore();
+        calcularComplexidade();
     }
 
     public void calcularScore(){
@@ -42,17 +44,39 @@ public class VerificadorDeForcaDeSenha {
 
         for (ResultadoDeAnalise analise : listaDeAnalises) {
             this.score += analise.obterBonus();
-            System.out.print(analise.obterEstado() + ": ");
-            System.out.println(analise.obterBonus());
         }
     }
+
+    public void calcularComplexidade() {
+        String complexity;
+
+        if (this.score > 100) {
+            this.score = 100;
+        } else if (this.score < 0) {
+            this.score = 0;
+        }
+        if (this.score < 20) {
+            complexity = "Very Weak";
+        } else if (this.score < 40) {
+            complexity = "Weak";
+        } else if (this.score < 60) {
+            complexity = "Good";
+        } else if (this.score < 80) {
+            complexity = "Strong";
+        } else {
+            complexity = "Very Strong";
+        }
+
+        this.complexidade = complexity;
+    }
+
 
     public int obterScore() {
         return this.score;
     }
 
-    String obterComplexidade(){
-        return  "";
+    public String obterComplexidade(){
+        return this.complexidade;
     }
 }
 
