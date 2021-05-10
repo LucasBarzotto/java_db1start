@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseSimbolos extends ResultadoDeAnalise {
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -23,8 +24,12 @@ public class ResultadoDeAnaliseSimbolos extends ResultadoDeAnalise {
 
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeAcordoComRegex("[^a-zA-Z0-9_]");
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
-        this.contadorDeOcorrencias.setContagemSimbolos(this.contagem);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemSimbolos(this.contagem);
+        this.calculadorDeBonus.setBonusSimbolos(this.bonus);
     }
 
     private void calcularEstado() {

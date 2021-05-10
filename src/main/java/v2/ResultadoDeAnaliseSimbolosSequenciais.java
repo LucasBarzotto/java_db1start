@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseSimbolosSequenciais extends ResultadoDeAnalise {
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -24,6 +25,11 @@ public class ResultadoDeAnaliseSimbolosSequenciais extends ResultadoDeAnalise {
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasLetrasSequenciais(StringsPossiveis.SIMBOLOS.valor);
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemSimbolosSequenciais(this.contagem);
+        this.calculadorDeBonus.setBonusSimbolosSequenciais(this.bonus);
     }
 
     private void calcularEstado() {

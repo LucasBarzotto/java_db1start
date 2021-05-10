@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseNumerosConsecutivos extends ResultadoDeAnalise {
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -24,6 +25,11 @@ public class ResultadoDeAnaliseNumerosConsecutivos extends ResultadoDeAnalise {
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex("[0-9]");
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemNumerosConsecutivos(this.contagem);
+        this.calculadorDeBonus.setBonusNumerosConsecutivos(this.bonus);
     }
 
     private void calcularEstado() {

@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseLetrasMinusculasConsecutivas extends ResultadoDeA
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -24,6 +25,11 @@ public class ResultadoDeAnaliseLetrasMinusculasConsecutivas extends ResultadoDeA
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex("[a-z]");
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemLetrasMinusculasConsecutivas(this.contagem);
+        this.calculadorDeBonus.setBonusLetrasMinusculasConsecutivas(this.bonus);
     }
 
     private void calcularEstado() {

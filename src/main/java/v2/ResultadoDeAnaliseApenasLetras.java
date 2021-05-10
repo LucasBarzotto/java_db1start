@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseApenasLetras extends ResultadoDeAnalise {
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -24,6 +25,11 @@ public class ResultadoDeAnaliseApenasLetras extends ResultadoDeAnalise {
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasCasoHajaApenasLetras();
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemApenasLetras(this.contagem);
+        this.calculadorDeBonus.setBonusApenasLetras(this.bonus);
     }
 
     private void calcularEstado() {

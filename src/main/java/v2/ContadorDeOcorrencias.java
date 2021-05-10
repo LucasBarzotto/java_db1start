@@ -8,6 +8,17 @@ public class ContadorDeOcorrencias {
     private int contagemLetrasMinusculas;
     private int contagemNumeros;
     private int contagemSimbolos;
+    private int contagemSimbolosENumerosNoMeio;
+    private int contagemRequerimentos;
+    private int contagemApenasLetras;
+    private int contagemApenasNumeros;
+    private int contagemCaracteresRepetidos;
+    private int contagemLetrasMaiusculasConsecutivas;
+    private int contagemLetrasMinusculasConsecutivas;
+    private int contagemNumerosConsecutivos;
+    private int contagemLetrasSequenciais;
+    private int contagemNumerosSequenciais;
+    private int contagemSimbolosSequenciais;
 
     public ContadorDeOcorrencias(String senha) {
         this.senha = senha;
@@ -152,4 +163,111 @@ public class ContadorDeOcorrencias {
         this.contagemSimbolos = contagemSimbolos;
     }
 
+    public int getContagemNumeroCaracteres() {
+        return contagemNumeroCaracteres;
+    }
+
+    public int getContagemLetrasMaiusculas() {
+        return contagemLetrasMaiusculas;
+    }
+
+    public int getContagemLetrasMinusculas() {
+        return contagemLetrasMinusculas;
+    }
+
+    public int getContagemNumeros() {
+        return contagemNumeros;
+    }
+
+    public int getContagemSimbolos() {
+        return contagemSimbolos;
+    }
+
+    public int getContagemSimbolosENumerosNoMeio() {
+        return contagemSimbolosENumerosNoMeio;
+    }
+
+    public void setContagemSimbolosENumerosNoMeio(int contagemSimbolosENumerosNoMeio) {
+        this.contagemSimbolosENumerosNoMeio = contagemSimbolosENumerosNoMeio;
+    }
+
+    public int getContagemRequerimentos() {
+        return contagemRequerimentos;
+    }
+
+    public void setContagemRequerimentos(int contagemRequerimentos) {
+        this.contagemRequerimentos = contagemRequerimentos;
+    }
+
+    public int getContagemApenasLetras() {
+        return contagemApenasLetras;
+    }
+
+    public void setContagemApenasLetras(int contagemApenasLetras) {
+        this.contagemApenasLetras = contagemApenasLetras;
+    }
+
+    public int getContagemApenasNumeros() {
+        return contagemApenasNumeros;
+    }
+
+    public void setContagemApenasNumeros(int contagemApenasNumeros) {
+        this.contagemApenasNumeros = contagemApenasNumeros;
+    }
+
+    public int getContagemCaracteresRepetidos() {
+        return contagemCaracteresRepetidos;
+    }
+
+    public void setContagemCaracteresRepetidos(int contagemCaracteresRepetidos) {
+        this.contagemCaracteresRepetidos = contagemCaracteresRepetidos;
+    }
+
+    public int getContagemLetrasMaiusculasConsecutivas() {
+        return contagemLetrasMaiusculasConsecutivas;
+    }
+
+    public void setContagemLetrasMaiusculasConsecutivas(int contagemLetrasMaiusculasConsecutivas) {
+        this.contagemLetrasMaiusculasConsecutivas = contagemLetrasMaiusculasConsecutivas;
+    }
+
+    public int getContagemLetrasMinusculasConsecutivas() {
+        return contagemLetrasMinusculasConsecutivas;
+    }
+
+    public void setContagemLetrasMinusculasConsecutivas(int contagemLetrasMinusculasConsecutivas) {
+        this.contagemLetrasMinusculasConsecutivas = contagemLetrasMinusculasConsecutivas;
+    }
+
+    public int getContagemNumerosConsecutivos() {
+        return contagemNumerosConsecutivos;
+    }
+
+    public void setContagemNumerosConsecutivos(int contagemNumerosConsecutivos) {
+        this.contagemNumerosConsecutivos = contagemNumerosConsecutivos;
+    }
+
+    public int getContagemLetrasSequenciais() {
+        return contagemLetrasSequenciais;
+    }
+
+    public void setContagemLetrasSequenciais(int contagemLetrasSequenciais) {
+        this.contagemLetrasSequenciais = contagemLetrasSequenciais;
+    }
+
+    public int getContagemNumerosSequenciais() {
+        return contagemNumerosSequenciais;
+    }
+
+    public void setContagemNumerosSequenciais(int contagemNumerosSequenciais) {
+        this.contagemNumerosSequenciais = contagemNumerosSequenciais;
+    }
+
+    public int getContagemSimbolosSequenciais() {
+        return contagemSimbolosSequenciais;
+    }
+
+    public void setContagemSimbolosSequenciais(int contagemSimbolosSequenciais) {
+        this.contagemSimbolosSequenciais = contagemSimbolosSequenciais;
+    }
 }

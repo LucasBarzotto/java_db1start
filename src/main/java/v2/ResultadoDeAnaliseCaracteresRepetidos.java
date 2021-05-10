@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseCaracteresRepetidos extends ResultadoDeAnalise {
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -22,6 +23,11 @@ public class ResultadoDeAnaliseCaracteresRepetidos extends ResultadoDeAnalise {
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasCaracteresRepetidos();
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoComplexo();
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemCaracteresRepetidos(this.contagem);
+        this.calculadorDeBonus.setBonusCaracteresRepetidos(this.bonus);
     }
 
     private void calcularEstado() {

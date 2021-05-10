@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -24,6 +25,11 @@ public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeRequerimentos();
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoRequerimento(this.contagem, multiplicador);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemRequerimentos(this.contagem);
+        this.calculadorDeBonus.setBonusRequerimentos(this.bonus);
     }
 
     private void calcularEstado() {

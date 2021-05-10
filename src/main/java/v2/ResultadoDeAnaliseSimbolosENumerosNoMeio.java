@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseSimbolosENumerosNoMeio extends ResultadoDeAnalise
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -24,6 +25,11 @@ public class ResultadoDeAnaliseSimbolosENumerosNoMeio extends ResultadoDeAnalise
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasNoMeioDeAcordoComRegex("[^a-zA-Z0-9_]|[0-9]");
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemSimbolosENumerosNoMeio(this.contagem);
+        this.calculadorDeBonus.setBonusSimbolosENumerosNoMeio(this.bonus);
     }
 
     private void calcularEstado() {

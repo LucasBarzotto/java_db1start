@@ -15,6 +15,7 @@ public class ResultadoDeAnaliseApenasNumeros extends ResultadoDeAnalise {
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
         this.calcularEstado();
+        this.setarContagemEBonus();
     }
 
     private void calcularResultado() {
@@ -24,6 +25,11 @@ public class ResultadoDeAnaliseApenasNumeros extends ResultadoDeAnalise {
         this.contagem = this.contadorDeOcorrencias.contarOcorrenciasCasoHajaApenasNumeros();
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
 
+    }
+
+    private void setarContagemEBonus() {
+        this.contadorDeOcorrencias.setContagemApenasNumeros(this.contagem);
+        this.calculadorDeBonus.setBonusApenasNumeros(this.bonus);
     }
 
     private void calcularEstado() {

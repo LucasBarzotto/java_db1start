@@ -6,7 +6,7 @@ public class Main {
 
         PasswordMeterV1 passMeter = new PasswordMeterV1();
 
-        passMeter.checkPassword("123456");
+        passMeter.checkPassword("ssshdjksabcl56");
 
         System.out.println(passMeter);
 
