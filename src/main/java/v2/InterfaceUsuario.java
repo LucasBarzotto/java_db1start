@@ -32,9 +32,9 @@ public class InterfaceUsuario {
 
     public boolean verificarSeRepeteOuFinaliza() {
         System.out.println("Deseja verificar outra senha? y/n");
-        String resposta = this.scanner.nextLine();
+        char resposta = this.scanner.nextLine().charAt(0);
 
-        if (resposta.equals("y")) {
+        if (resposta == 'y') {
             return true;
         } else {
             System.out.println("bye");

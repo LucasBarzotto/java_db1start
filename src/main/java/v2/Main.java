@@ -23,6 +23,7 @@ public class Main {
             repetir = ui.verificarSeRepeteOuFinaliza();
         }
 
+        scanner.close();
 
     }
 
