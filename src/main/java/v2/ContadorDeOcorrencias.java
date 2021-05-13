@@ -1,5 +1,7 @@
 package v2;
 
+import static v2.Constantes.*;
+
 public class ContadorDeOcorrencias {
 
     private String senha;
@@ -68,7 +70,7 @@ public class ContadorDeOcorrencias {
             }
         }
 
-        if (this.contagemNumeroCaracteres >= TamanhoMinimo.SENHA.valor) {
+        if (this.contagemNumeroCaracteres >= TAMANHO_MINIMO_SENHA) {
             contagem++;
         }
 

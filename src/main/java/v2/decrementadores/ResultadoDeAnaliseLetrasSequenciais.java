@@ -2,6 +2,8 @@ package v2.decrementadores;
 
 import v2.*;
 
+import static v2.Constantes.LETRAS;
+
 public class ResultadoDeAnaliseLetrasSequenciais extends ResultadoDeAnalise {
     private int contagem;
     private int bonus;
@@ -24,7 +26,7 @@ public class ResultadoDeAnaliseLetrasSequenciais extends ResultadoDeAnalise {
 
         int multiplicador = 3;
 
-        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasLetrasSequenciais(StringsPossiveis.LETRAS.valor);
+        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasLetrasSequenciais(LETRAS);
         this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
 
     }

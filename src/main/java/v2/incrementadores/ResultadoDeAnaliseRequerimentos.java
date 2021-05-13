@@ -2,6 +2,9 @@ package v2.incrementadores;
 
 import v2.*;
 
+import static v2.Constantes.MINIMO_REQUERIMENTOS;
+import static v2.Constantes.TAMANHO_MINIMO_SENHA;
+
 public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
     private int contagem;
     private int bonus;
@@ -35,9 +38,9 @@ public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
     }
 
     private void calcularEstado() {
-        if (senha.length() >= TamanhoMinimo.SENHA.valor && this.contagem == 5) {
+        if (senha.length() >= TAMANHO_MINIMO_SENHA && this.contagem == 5) {
             this.estado = TipoEstado.EXCEPCIONAL;
-        } else if (senha.length() >= TamanhoMinimo.SENHA.valor && this.contagem == 4) {
+        } else if (senha.length() >= TAMANHO_MINIMO_SENHA && this.contagem == 4) {
             this.estado = TipoEstado.SUFICIENTE;
         } else {
             this.estado = TipoEstado.FALHA;

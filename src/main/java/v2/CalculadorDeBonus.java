@@ -1,5 +1,7 @@
 package v2;
 
+import static v2.Constantes.*;
+
 public class CalculadorDeBonus {
 
     private String senha;
@@ -50,7 +52,7 @@ public class CalculadorDeBonus {
 
     public int calculadorDeBonusTipoRequerimento(int contagem, int multiplicador) {
         int bonus = 0;
-        if (this.senha.length() >= TamanhoMinimo.SENHA.valor && contagem > TamanhoMinimo.REQUERIMENTOS.valor) {
+        if (this.senha.length() >= TAMANHO_MINIMO_SENHA && contagem > MINIMO_REQUERIMENTOS) {
             bonus = contagem * multiplicador;
         } else {
             bonus = 0;
