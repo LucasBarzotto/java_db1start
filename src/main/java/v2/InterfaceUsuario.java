@@ -37,7 +37,6 @@ public class InterfaceUsuario {
         if (resposta == 'y') {
             return true;
         } else {
-            System.out.println("bye");
             return false;
         }
 

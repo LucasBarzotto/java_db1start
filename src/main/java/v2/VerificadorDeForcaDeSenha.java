@@ -1,5 +1,8 @@
 package v2;
 
+import v2.decrementadores.*;
+import v2.incrementadores.*;
+
 import java.util.ArrayList;
 
 public class VerificadorDeForcaDeSenha {

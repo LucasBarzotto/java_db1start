@@ -7,11 +7,11 @@ public abstract class ResultadoDeAnalise {
         this.senha = senha;
     }
 
-    abstract int obterBonus();
+    public abstract int obterBonus();
 
-    abstract int obterContagem();
+    public abstract int obterContagem();
 
-    abstract TipoEstado obterEstado();
+    public abstract TipoEstado obterEstado();
 
-    abstract TipoOperacao obterTipoOperacao();
+    public abstract TipoOperacao obterTipoOperacao();
 }
