@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import v2.CalculadorDeBonus;
 import v2.ContadorDeOcorrencias;
 import v2.TipoEstado;
-import v2.TipoOperacao;
-import v2.incrementadores.ResultadoDeAnaliseNumeroCaracteres;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,7 +20,7 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         Assertions.assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        Assertions.assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        Assertions.assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -35,7 +33,7 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
         assertEquals(6, resultado.obterContagem());
         assertEquals(24, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -48,7 +46,7 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
         assertEquals(8, resultado.obterContagem());
         assertEquals(32, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -61,7 +59,7 @@ class ResultadoDeAnaliseNumeroCaracteresTest {
         assertEquals(10, resultado.obterContagem());
         assertEquals(40, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
 }

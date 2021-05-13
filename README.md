@@ -5,4 +5,5 @@ Reescrever o código fonte do site [PasswordMeter](http://www.passwordmeter.com/
 Monitoramento da pasta src, utilizando a ferramenta [Cloc](https://github.com/AlDanial/cloc):<br />
 
 Commit c658766: 2338 linhas de código | 43 arquivos | 583 linhas em branco<br />
-Commit 7be4d6e: 2445 linhas de código | 43 arquivos | 600 linhas em branco<br />
+Commit 0ddbe17: 2445 linhas de código | 43 arquivos | 600 linhas em branco<br />
+Commit -------: 2348 linhas de código | 42 arquivos | 599 linhas em branco<br />

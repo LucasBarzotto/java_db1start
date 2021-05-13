@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import v2.CalculadorDeBonus;
 import v2.ContadorDeOcorrencias;
 import v2.TipoEstado;
-import v2.TipoOperacao;
-import v2.decrementadores.ResultadoDeAnaliseApenasLetras;
 import v2.incrementadores.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +22,7 @@ class ResultadoDeAnaliseApenasLetrasTest {
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         Assertions.assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        Assertions.assertEquals(TipoOperacao.DECREMENTADOR, resultado.obterTipoOperacao());
+        Assertions.assertEquals(false, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -38,7 +36,7 @@ class ResultadoDeAnaliseApenasLetrasTest {
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(TipoOperacao.DECREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(false, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -52,7 +50,7 @@ class ResultadoDeAnaliseApenasLetrasTest {
         assertEquals(19, resultado.obterContagem());
         assertEquals(-19, resultado.obterBonus());
         assertEquals(TipoEstado.ALERTA, resultado.obterEstado());
-        assertEquals(TipoOperacao.DECREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(false, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     private ResultadoDeAnaliseApenasLetras testSetup (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {

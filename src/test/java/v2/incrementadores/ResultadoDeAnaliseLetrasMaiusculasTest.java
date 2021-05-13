@@ -18,7 +18,7 @@ class ResultadoDeAnaliseLetrasMaiusculasTest {
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         Assertions.assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        Assertions.assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        Assertions.assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -31,7 +31,7 @@ class ResultadoDeAnaliseLetrasMaiusculasTest {
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -44,7 +44,7 @@ class ResultadoDeAnaliseLetrasMaiusculasTest {
         assertEquals(1, resultado.obterContagem());
         assertEquals(18, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -57,6 +57,6 @@ class ResultadoDeAnaliseLetrasMaiusculasTest {
         assertEquals(3, resultado.obterContagem());
         assertEquals(18, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 }

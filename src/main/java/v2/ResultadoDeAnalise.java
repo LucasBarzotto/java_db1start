@@ -13,5 +13,5 @@ public abstract class ResultadoDeAnalise {
 
     public abstract TipoEstado obterEstado();
 
-    public abstract TipoOperacao obterTipoOperacao();
+    public abstract boolean retornaTrueQuandoTipoIncrementador();
 }

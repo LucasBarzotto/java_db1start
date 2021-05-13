@@ -20,7 +20,7 @@ class ResultadoDeAnaliseRequerimentosTest {
         assertEquals(0, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         Assertions.assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        Assertions.assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        Assertions.assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -35,7 +35,7 @@ class ResultadoDeAnaliseRequerimentosTest {
         assertEquals(4, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -50,7 +50,7 @@ class ResultadoDeAnaliseRequerimentosTest {
         assertEquals(3, resultado.obterContagem());
         assertEquals(0, resultado.obterBonus());
         assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -65,7 +65,7 @@ class ResultadoDeAnaliseRequerimentosTest {
         assertEquals(4, resultado.obterContagem());
         assertEquals(8, resultado.obterBonus());
         assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     @Test
@@ -80,7 +80,7 @@ class ResultadoDeAnaliseRequerimentosTest {
         assertEquals(5, resultado.obterContagem());
         assertEquals(10, resultado.obterBonus());
         assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
-        assertEquals(TipoOperacao.INCREMENTADOR, resultado.obterTipoOperacao());
+        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
     }
 
     private ResultadoDeAnaliseRequerimentos testSetup (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {

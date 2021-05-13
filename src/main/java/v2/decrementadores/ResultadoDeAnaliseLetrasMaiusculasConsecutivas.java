@@ -6,13 +6,13 @@ public class ResultadoDeAnaliseLetrasMaiusculasConsecutivas extends ResultadoDeA
     private int contagem;
     private int bonus;
     private TipoEstado estado;
-    private TipoOperacao tipoOperacao;
+    private boolean incrementador;
     private ContadorDeOcorrencias contadorDeOcorrencias;
     private CalculadorDeBonus calculadorDeBonus;
 
     public ResultadoDeAnaliseLetrasMaiusculasConsecutivas(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha);
-        this.tipoOperacao = TipoOperacao.DECREMENTADOR;
+        this.incrementador = false;
         this.contadorDeOcorrencias = contador;
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
@@ -44,11 +44,7 @@ public class ResultadoDeAnaliseLetrasMaiusculasConsecutivas extends ResultadoDeA
 
     @Override
     public int obterBonus() {
-        if (this.tipoOperacao == TipoOperacao.INCREMENTADOR) {
-            return bonus;
-        } else {
-            return bonus * (-1);
-        }
+        return (incrementador) ? bonus : bonus*(-1);
     }
 
     @Override
@@ -62,7 +58,7 @@ public class ResultadoDeAnaliseLetrasMaiusculasConsecutivas extends ResultadoDeA
     }
 
     @Override
-    public TipoOperacao obterTipoOperacao() {
-        return this.tipoOperacao;
+    public boolean retornaTrueQuandoTipoIncrementador() {
+        return this.incrementador;
     }
 }

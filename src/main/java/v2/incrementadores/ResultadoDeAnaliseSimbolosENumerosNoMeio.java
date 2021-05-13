@@ -6,13 +6,13 @@ public class ResultadoDeAnaliseSimbolosENumerosNoMeio extends ResultadoDeAnalise
     private int contagem;
     private int bonus;
     private TipoEstado estado;
-    private TipoOperacao tipoOperacao;
+    private boolean incrementador;
     private ContadorDeOcorrencias contadorDeOcorrencias;
     private CalculadorDeBonus calculadorDeBonus;
 
     public ResultadoDeAnaliseSimbolosENumerosNoMeio(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha);
-        this.tipoOperacao = TipoOperacao.INCREMENTADOR;
+        this.incrementador = true;
         this.contadorDeOcorrencias = contador;
         this.calculadorDeBonus = calculador;
         this.calcularResultado();
@@ -46,11 +46,7 @@ public class ResultadoDeAnaliseSimbolosENumerosNoMeio extends ResultadoDeAnalise
 
     @Override
     public int obterBonus() {
-        if (this.tipoOperacao == TipoOperacao.INCREMENTADOR) {
-            return bonus;
-        } else {
-            return bonus * (-1);
-        }
+        return (incrementador) ? bonus : bonus*(-1);
     }
 
     @Override
@@ -64,7 +60,7 @@ public class ResultadoDeAnaliseSimbolosENumerosNoMeio extends ResultadoDeAnalise
     }
 
     @Override
-    public TipoOperacao obterTipoOperacao() {
-        return this.tipoOperacao;
+    public boolean retornaTrueQuandoTipoIncrementador() {
+        return this.incrementador;
     }
 }
