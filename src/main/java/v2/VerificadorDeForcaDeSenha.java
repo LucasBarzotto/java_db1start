@@ -79,26 +79,20 @@ public class VerificadorDeForcaDeSenha {
     }
 
     public void calcularComplexidade() {
-        String complexity;
+        score = (score > 100) ? 100 : score;
+        score = (score < 0) ? 0 : score;
 
-        if (score > 100) {
-            score = 100;
-        } else if (score < 0) {
-            score = 0;
-        }
         if (score < 20) {
-            complexity = "Very Weak";
+            complexidade = "Very Weak";
         } else if (score < 40) {
-            complexity = "Weak";
+            complexidade = "Weak";
         } else if (score < 60) {
-            complexity = "Good";
+            complexidade = "Good";
         } else if (score < 80) {
-            complexity = "Strong";
+            complexidade = "Strong";
         } else {
-            complexity = "Very Strong";
+            complexidade = "Very Strong";
         }
-
-        complexidade = complexity;
     }
 
 }

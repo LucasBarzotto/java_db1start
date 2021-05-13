@@ -34,11 +34,6 @@ public class InterfaceUsuario {
         System.out.println("Deseja verificar outra senha? y/n");
         char resposta = scanner.nextLine().charAt(0);
 
-        if (resposta == 'y') {
-            return true;
-        } else {
-            return false;
-        }
-
+        return (resposta == 'y') ? true : false;
     }
 }

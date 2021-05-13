@@ -26,23 +26,11 @@ public class CalculadorDeBonus {
     }
 
     public int calculadorDeBonusTipoCondicaoIncremento(int contagem, int multiplicador) {
-        int bonus = 0;
-        if (contagem > 0 && contagem < senha.length()) {
-            bonus = (senha.length() - contagem) * multiplicador;
-        } else {
-            bonus = 0;
-        }
-        return bonus;
+        return (contagem > 0 && contagem < senha.length()) ? (senha.length() - contagem) * multiplicador : 0;
     }
 
     public int calculadorDeBonusTipoCondicao(int contagem, int multiplicador) {
-        int bonus = 0;
-        if (contagem > 0 && contagem < senha.length()) {
-            bonus = contagem * multiplicador;
-        } else {
-            bonus = 0;
-        }
-        return bonus;
+        return (contagem > 0 && contagem < senha.length()) ? contagem * multiplicador : 0;
     }
 
     public int calculadorDeBonusTipoFlat(int contagem, int multiplicador) {
@@ -50,13 +38,7 @@ public class CalculadorDeBonus {
     }
 
     public int calculadorDeBonusTipoRequerimento(int contagem, int multiplicador) {
-        int bonus = 0;
-        if (senha.length() >= TAMANHO_MINIMO_SENHA && contagem > MINIMO_REQUERIMENTOS) {
-            bonus = contagem * multiplicador;
-        } else {
-            bonus = 0;
-        }
-        return bonus;
+        return (senha.length() >= TAMANHO_MINIMO_SENHA && contagem > MINIMO_REQUERIMENTOS) ? contagem * multiplicador : 0;
     }
 
     public int calculadorDeBonusTipoComplexo() {
@@ -80,7 +62,6 @@ public class CalculadorDeBonus {
                         Math.ceil(incrementoCaracteresRepetidos);
             }
         }
-
         return (int) incrementoCaracteresRepetidos;
     }
 

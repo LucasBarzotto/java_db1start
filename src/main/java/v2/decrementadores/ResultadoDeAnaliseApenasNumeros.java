@@ -17,11 +17,7 @@ public class ResultadoDeAnaliseApenasNumeros extends ResultadoDeAnalise {
 
     @Override
     protected void calcularEstado() {
-        if (contagem == 0) {
-            estado = TipoEstado.SUFICIENTE;
-        } else {
-            estado = TipoEstado.ALERTA;
-        }
+        estado = (contagem == 0) ? TipoEstado.SUFICIENTE : TipoEstado.ALERTA;
     }
 
     @Override

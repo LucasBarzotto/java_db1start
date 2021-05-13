@@ -34,9 +34,7 @@ public class ContadorDeOcorrencias {
         int contagem = 0;
 
         for (int i = 0; i < caracteresDaSenha.length; i++) {
-            if (caracteresDaSenha[i].matches(regex)) {
-                contagem++;
-            }
+            contagem += (caracteresDaSenha[i].matches(regex)) ? 1 : 0;
         }
         return contagem;
     }
@@ -46,11 +44,7 @@ public class ContadorDeOcorrencias {
         int contagem = 0;
 
         for (int i = 0; i < caracteresDaSenha.length; i++) {
-            if (caracteresDaSenha[i].matches(regex)) {
-                if (i > 0 && i < caracteresDaSenha.length - 1) {
-                    contagem++;
-                }
-            }
+            contagem += (caracteresDaSenha[i].matches(regex) && i > 0 && i < caracteresDaSenha.length-1) ? 1 : 0;
         }
         return contagem;
     }
@@ -64,36 +58,19 @@ public class ContadorDeOcorrencias {
         ocorrencias[3] = contagemSimbolos;
 
         for (int i = 0; i < ocorrencias.length; i++) {
-            if(ocorrencias[i] > 0) {
-                contagem++;
-            }
+            contagem += (ocorrencias[i] > 0) ? 1 : 0;
         }
-
-        if (contagemNumeroCaracteres >= TAMANHO_MINIMO_SENHA) {
-            contagem++;
-        }
+        contagem += (contagemNumeroCaracteres >= TAMANHO_MINIMO_SENHA) ? 1 : 0;
 
         return contagem;
     }
 
     public int contarOcorrenciasCasoHajaApenasLetras() {
-        int contagem = 0;
-
-        if ((contagemLetrasMaiusculas > 0 || contagemLetrasMinusculas > 0) && contagemSimbolos == 0 && contagemNumeros == 0) {
-            contagem = senha.length();
-        }
-
-        return contagem;
+        return ((contagemLetrasMaiusculas > 0 || contagemLetrasMinusculas > 0) && contagemSimbolos == 0 && contagemNumeros == 0) ? senha.length() : 0;
     }
 
     public int contarOcorrenciasCasoHajaApenasNumeros() {
-        int contagem = 0;
-
-        if (contagemLetrasMinusculas == 0 && contagemLetrasMaiusculas == 0 && contagemSimbolos == 0 && contagemNumeros > 0) {
-            contagem = senha.length();
-        }
-
-        return contagem;
+        return (contagemLetrasMinusculas == 0 && contagemLetrasMaiusculas == 0 && contagemSimbolos == 0 && contagemNumeros > 0) ? senha.length() : 0;
     }
 
     public int contarOcorrenciasCaracteresRepetidos() {
@@ -108,7 +85,6 @@ public class ContadorDeOcorrencias {
                 }
             }
         }
-
         return contagem;
     }
 
@@ -119,11 +95,7 @@ public class ContadorDeOcorrencias {
 
         for (int i = 0; i < caracteresDaSenha.length; i++) {
             if (caracteresDaSenha[i].matches(regex)) {
-                if (auxiliar != null) {
-                    if (auxiliar + 1 == i) {
-                        contagem++;
-                    }
-                }
+                contagem += ((auxiliar != null) && (auxiliar + 1 == i)) ? 1 : 0;
                 auxiliar = i;
             }
         }
@@ -137,9 +109,7 @@ public class ContadorDeOcorrencias {
         for (int i = 0; i < tamanho; i++) {
             String tresCharSequenciais = letras.substring(i, i + 3);
             String tresCharSequenciaisReversos = new StringBuilder(tresCharSequenciais).reverse().toString();
-            if (senha.toLowerCase().contains(tresCharSequenciais) || senha.toLowerCase().contains(tresCharSequenciaisReversos)) {
-                contagem++;
-            }
+            contagem += (senha.toLowerCase().contains(tresCharSequenciais) || senha.toLowerCase().contains(tresCharSequenciaisReversos)) ? 1 : 0;
         }
         return contagem;
     }
