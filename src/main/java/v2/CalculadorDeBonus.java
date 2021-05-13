@@ -1,5 +1,4 @@
 package v2;
-
 import static v2.Constantes.*;
 
 public class CalculadorDeBonus {
@@ -22,14 +21,14 @@ public class CalculadorDeBonus {
     private int bonusNumerosSequenciais;
     private int bonusSimbolosSequenciais;
 
-    public CalculadorDeBonus(String senha) {
-        this.senha = senha;
+    public CalculadorDeBonus(String senhaInput) {
+        senha = senhaInput;
     }
 
     public int calculadorDeBonusTipoCondicaoIncremento(int contagem, int multiplicador) {
         int bonus = 0;
-        if (contagem > 0 && contagem < this.senha.length()) {
-            bonus = (this.senha.length() - contagem) * multiplicador;
+        if (contagem > 0 && contagem < senha.length()) {
+            bonus = (senha.length() - contagem) * multiplicador;
         } else {
             bonus = 0;
         }
@@ -52,7 +51,7 @@ public class CalculadorDeBonus {
 
     public int calculadorDeBonusTipoRequerimento(int contagem, int multiplicador) {
         int bonus = 0;
-        if (this.senha.length() >= TAMANHO_MINIMO_SENHA && contagem > MINIMO_REQUERIMENTOS) {
+        if (senha.length() >= TAMANHO_MINIMO_SENHA && contagem > MINIMO_REQUERIMENTOS) {
             bonus = contagem * multiplicador;
         } else {
             bonus = 0;
@@ -61,7 +60,7 @@ public class CalculadorDeBonus {
     }
 
     public int calculadorDeBonusTipoComplexo() {
-        String[] caracteresDaSenha = this.senha.replaceAll("\\s+", "").split("\\s*");
+        String[] caracteresDaSenha = senha.replaceAll("\\s+", "").split("\\s*");
         int contagem = 0;
         double incrementoCaracteresRepetidos = 0;
 
@@ -69,13 +68,13 @@ public class CalculadorDeBonus {
             boolean existemCaracteresRepetidos = false;
             for (int j = 0; j < caracteresDaSenha.length; j++) {
                 if (i != j && caracteresDaSenha[i].equals(caracteresDaSenha[j])) {
-                    incrementoCaracteresRepetidos += Math.abs(this.senha.length() / (j - i));
+                    incrementoCaracteresRepetidos += Math.abs(senha.length() / (j - i));
                     existemCaracteresRepetidos = true;
                 }
             }
             if (existemCaracteresRepetidos) {
                 contagem++;
-                int countUniqueCharacters = this.senha.length() - contagem;
+                int countUniqueCharacters = senha.length() - contagem;
                 incrementoCaracteresRepetidos = countUniqueCharacters != 0 ?
                         Math.ceil(incrementoCaracteresRepetidos / countUniqueCharacters) :
                         Math.ceil(incrementoCaracteresRepetidos);

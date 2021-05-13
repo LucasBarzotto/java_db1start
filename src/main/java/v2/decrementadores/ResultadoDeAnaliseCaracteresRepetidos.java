@@ -5,28 +5,28 @@ public class ResultadoDeAnaliseCaracteresRepetidos extends ResultadoDeAnalise {
 
     public ResultadoDeAnaliseCaracteresRepetidos(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
-        this.incrementador = false;
+        incrementador = false;
     }
 
     @Override
     protected void calcularResultado() {
-        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasCaracteresRepetidos();
-        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoComplexo();
+        contagem = contadorDeOcorrencias.contarOcorrenciasCaracteresRepetidos();
+        bonus = calculadorDeBonus.calculadorDeBonusTipoComplexo();
     }
 
     @Override
     protected void calcularEstado() {
-        if (this.contagem == 0) {
-            this.estado = TipoEstado.SUFICIENTE;
+        if (contagem == 0) {
+            estado = TipoEstado.SUFICIENTE;
         } else {
-            this.estado = TipoEstado.ALERTA;
+            estado = TipoEstado.ALERTA;
         }
     }
 
     @Override
     protected void setarContagemEBonus() {
-        this.contadorDeOcorrencias.setContagemCaracteresRepetidos(this.contagem);
-        this.calculadorDeBonus.setBonusCaracteresRepetidos(this.bonus);
+        contadorDeOcorrencias.setContagemCaracteresRepetidos(contagem);
+        calculadorDeBonus.setBonusCaracteresRepetidos(bonus);
     }
 
 }

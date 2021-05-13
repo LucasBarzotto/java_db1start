@@ -6,8 +6,8 @@ public class InterfaceUsuario {
 
     private Scanner scanner;
 
-    public InterfaceUsuario(Scanner scanner) {
-        this.scanner = scanner;
+    public InterfaceUsuario(Scanner scan) {
+        scanner = scan;
     }
 
     public void start() {
@@ -18,7 +18,7 @@ public class InterfaceUsuario {
 
     public String obterSenhaDoUsuario() {
         System.out.print("Digite a senha: ");
-        String senha = this.scanner.nextLine();
+        String senha = scanner.nextLine();
         System.out.println("");
         return senha;
     }
@@ -32,7 +32,7 @@ public class InterfaceUsuario {
 
     public boolean verificarSeRepeteOuFinaliza() {
         System.out.println("Deseja verificar outra senha? y/n");
-        char resposta = this.scanner.nextLine().charAt(0);
+        char resposta = scanner.nextLine().charAt(0);
 
         if (resposta == 'y') {
             return true;

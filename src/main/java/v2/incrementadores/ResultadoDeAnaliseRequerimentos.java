@@ -8,31 +8,31 @@ public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
 
     public ResultadoDeAnaliseRequerimentos (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
-        this.incrementador = true;
+        incrementador = true;
     }
 
     @Override
     protected void calcularResultado() {
         int multiplicador = 2;
-        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeRequerimentos();
-        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoRequerimento(this.contagem, multiplicador);
+        contagem = contadorDeOcorrencias.contarOcorrenciasDeRequerimentos();
+        bonus = calculadorDeBonus.calculadorDeBonusTipoRequerimento(contagem, multiplicador);
     }
 
     @Override
     protected void calcularEstado() {
-        if (senha.length() >= TAMANHO_MINIMO_SENHA && this.contagem == 5) {
-            this.estado = TipoEstado.EXCEPCIONAL;
-        } else if (senha.length() >= TAMANHO_MINIMO_SENHA && this.contagem == 4) {
-            this.estado = TipoEstado.SUFICIENTE;
+        if (senha.length() >= TAMANHO_MINIMO_SENHA && contagem == 5) {
+            estado = TipoEstado.EXCEPCIONAL;
+        } else if (senha.length() >= TAMANHO_MINIMO_SENHA && contagem == 4) {
+            estado = TipoEstado.SUFICIENTE;
         } else {
-            this.estado = TipoEstado.FALHA;
+            estado = TipoEstado.FALHA;
         }
     }
 
     @Override
     protected void setarContagemEBonus() {
-        this.contadorDeOcorrencias.setContagemRequerimentos(this.contagem);
-        this.calculadorDeBonus.setBonusRequerimentos(this.bonus);
+        contadorDeOcorrencias.setContagemRequerimentos(contagem);
+        calculadorDeBonus.setBonusRequerimentos(bonus);
     }
 
 }

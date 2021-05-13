@@ -5,29 +5,29 @@ public class ResultadoDeAnaliseLetrasMaiusculasConsecutivas extends ResultadoDeA
 
     public ResultadoDeAnaliseLetrasMaiusculasConsecutivas(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
-        this.incrementador = false;
+        incrementador = false;
     }
 
     @Override
     protected void calcularResultado() {
         int multiplicador = 2;
-        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex("[A-Z]");
-        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
+        contagem = contadorDeOcorrencias.contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex("[A-Z]");
+        bonus = calculadorDeBonus.calculadorDeBonusTipoFlat(contagem, multiplicador);
     }
 
     @Override
     protected void calcularEstado() {
-        if (this.contagem == 0) {
-            this.estado = TipoEstado.SUFICIENTE;
+        if (contagem == 0) {
+            estado = TipoEstado.SUFICIENTE;
         } else {
-            this.estado = TipoEstado.ALERTA;
+            estado = TipoEstado.ALERTA;
         }
     }
 
     @Override
     protected void setarContagemEBonus() {
-        this.contadorDeOcorrencias.setContagemLetrasMaiusculasConsecutivas(this.contagem);
-        this.calculadorDeBonus.setBonusLetrasMaiusculasConsecutivas(this.bonus);
+        contadorDeOcorrencias.setContagemLetrasMaiusculasConsecutivas(contagem);
+        calculadorDeBonus.setBonusLetrasMaiusculasConsecutivas(bonus);
     }
 
 }

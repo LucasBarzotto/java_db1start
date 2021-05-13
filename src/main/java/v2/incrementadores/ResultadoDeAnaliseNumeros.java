@@ -5,31 +5,31 @@ public class ResultadoDeAnaliseNumeros extends ResultadoDeAnalise {
 
     public ResultadoDeAnaliseNumeros (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
-        this.incrementador = true;
+        incrementador = true;
     }
 
     @Override
     protected void calcularResultado() {
         int multiplicador = 4;
-        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasDeAcordoComRegex("[0-9]");
-        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoCondicao(this.contagem, multiplicador);
+        contagem = contadorDeOcorrencias.contarOcorrenciasDeAcordoComRegex("[0-9]");
+        bonus = calculadorDeBonus.calculadorDeBonusTipoCondicao(contagem, multiplicador);
     }
 
     @Override
     protected void calcularEstado() {
-        if (this.contagem == 0) {
-            this.estado = TipoEstado.FALHA;
-        } else if (this.contagem == 1) {
-            this.estado = TipoEstado.SUFICIENTE;
+        if (contagem == 0) {
+            estado = TipoEstado.FALHA;
+        } else if (contagem == 1) {
+            estado = TipoEstado.SUFICIENTE;
         } else {
-            this.estado = TipoEstado.EXCEPCIONAL;
+            estado = TipoEstado.EXCEPCIONAL;
         }
     }
 
     @Override
     protected void setarContagemEBonus() {
-        this.contadorDeOcorrencias.setContagemNumeros(this.contagem);
-        this.calculadorDeBonus.setBonusNumeros(this.bonus);
+        contadorDeOcorrencias.setContagemNumeros(contagem);
+        calculadorDeBonus.setBonusNumeros(bonus);
     }
 
 }

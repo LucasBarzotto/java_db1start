@@ -9,13 +9,13 @@ public abstract class ResultadoDeAnalise {
     protected int bonus;
     protected TipoEstado estado;
 
-    public ResultadoDeAnalise(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
-        this.senha = senha;
-        this.contadorDeOcorrencias = contador;
-        this.calculadorDeBonus = calculador;
-        this.calcularResultado();
-        this.calcularEstado();
-        this.setarContagemEBonus();
+    public ResultadoDeAnalise(String senhaInput, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
+        senha = senhaInput;
+        contadorDeOcorrencias = contador;
+        calculadorDeBonus = calculador;
+        calcularResultado();
+        calcularEstado();
+        setarContagemEBonus();
     }
 
     protected abstract void calcularResultado();
@@ -29,14 +29,14 @@ public abstract class ResultadoDeAnalise {
     }
 
     public int obterContagem() {
-        return this.contagem;
+        return contagem;
     }
 
     public TipoEstado obterEstado() {
-        return this.estado;
+        return estado;
     }
 
     public boolean retornaTrueQuandoTipoIncrementador() {
-        return this.incrementador;
+        return incrementador;
     }
 }

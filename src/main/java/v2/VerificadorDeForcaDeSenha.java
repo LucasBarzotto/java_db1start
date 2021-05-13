@@ -13,10 +13,10 @@ public class VerificadorDeForcaDeSenha {
     private ContadorDeOcorrencias contador;
     private CalculadorDeBonus calculador;
 
-    public VerificadorDeForcaDeSenha(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
-        this.senha = senha;
-        this.contador = contador;
-        this.calculador = calculador;
+    public VerificadorDeForcaDeSenha(String senhaInput, ContadorDeOcorrencias contadorDeOcorrencias, CalculadorDeBonus calculadorDeBonus) {
+        senha = senhaInput;
+        contador = contadorDeOcorrencias;
+        calculador = calculadorDeBonus;
         calcularScore();
         calcularComplexidade();
     }
@@ -26,88 +26,81 @@ public class VerificadorDeForcaDeSenha {
         ArrayList<ResultadoDeAnalise> listaDeAnalises = new ArrayList<>();
 
         // ADDITIONS
-        listaDeAnalises.add(new ResultadoDeAnaliseNumeroCaracteres(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculas(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculas(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseNumeros(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolos(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosENumerosNoMeio(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseRequerimentos(this.senha, this.contador, this.calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculas(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumeros(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseSimbolos(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosENumerosNoMeio(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseRequerimentos(senha, contador, calculador));
 
         // DEDUCTIONS
-        listaDeAnalises.add(new ResultadoDeAnaliseApenasLetras(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseApenasNumeros(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseCaracteresRepetidos(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculasConsecutivas(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculasConsecutivas(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseNumerosConsecutivos(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasSequenciais(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseNumerosSequenciais(this.senha, this.contador, this.calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosSequenciais(this.senha, this.contador, this.calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseApenasLetras(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseApenasNumeros(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseCaracteresRepetidos(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculasConsecutivas(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculasConsecutivas(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumerosConsecutivos(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseLetrasSequenciais(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseNumerosSequenciais(senha, contador, calculador));
+        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosSequenciais(senha, contador, calculador));
 
         // CALCULO
 
         for (ResultadoDeAnalise analise : listaDeAnalises) {
-            this.score += analise.obterBonus();
+            score += analise.obterBonus();
         }
     }
 
     public String obterStringDeSaida() {
-        return "Password: " + this.senha
-                + "\nScore: " + this.score
-                + "\nComplexity: " + this.complexidade
+        return "Password: " + senha
+                + "\nScore: " + score
+                + "\nComplexity: " + complexidade
 
                 + "\nAddictions"
-                + "\n[C: " + this.contador.getContagemNumeroCaracteres() + " | B: " + this.calculador.getBonusNumeroCaracteres() + "] Number of Characters"
-                + "\n[C: " + this.contador.getContagemLetrasMaiusculas() + " | B: " + this.calculador.getBonusLetrasMaiusculas() + "] Uppercase Letters"
-                + "\n[C: " + this.contador.getContagemLetrasMinusculas() + " | B: " + this.calculador.getBonusLetrasMinusculas() + "] Lowercase Letters"
-                + "\n[C: " + this.contador.getContagemNumeros() + " | B: " + this.calculador.getBonusNumeros()+ "] Numbers"
-                + "\n[C: " + this.contador.getContagemSimbolos() + " | B: " + this.calculador.getBonusSimbolos()+ "] Symbols"
-                + "\n[C: " + this.contador.getContagemSimbolosENumerosNoMeio() + " | B: " + this.calculador.getBonusSimbolosENumerosNoMeio() + "] Middle Numbers or Symbols"
-                + "\n[C: " + this.contador.getContagemRequerimentos() + " | B: " + this.calculador.getBonusRequerimentos() + "] Requirements"
+                + "\n[C: " + contador.getContagemNumeroCaracteres() + " | B: " + calculador.getBonusNumeroCaracteres() + "] Number of Characters"
+                + "\n[C: " + contador.getContagemLetrasMaiusculas() + " | B: " + calculador.getBonusLetrasMaiusculas() + "] Uppercase Letters"
+                + "\n[C: " + contador.getContagemLetrasMinusculas() + " | B: " + calculador.getBonusLetrasMinusculas() + "] Lowercase Letters"
+                + "\n[C: " + contador.getContagemNumeros() + " | B: " + calculador.getBonusNumeros()+ "] Numbers"
+                + "\n[C: " + contador.getContagemSimbolos() + " | B: " + calculador.getBonusSimbolos()+ "] Symbols"
+                + "\n[C: " + contador.getContagemSimbolosENumerosNoMeio() + " | B: " + calculador.getBonusSimbolosENumerosNoMeio() + "] Middle Numbers or Symbols"
+                + "\n[C: " + contador.getContagemRequerimentos() + " | B: " + calculador.getBonusRequerimentos() + "] Requirements"
 
                 + "\nDeductions"
-                + "\n[C: " + this.contador.getContagemApenasLetras() + " | B: " + this.calculador.getBonusApenasLetras() + "] Letters Only"
-                + "\n[C: " + this.contador.getContagemApenasNumeros() + " | B: " + this.calculador.getBonusApenasNumeros() + "] Numbers Only"
-                + "\n[C: " + this.contador.getContagemCaracteresRepetidos() + " | B: " + this.calculador.getBonusCaracteresRepetidos() + "] Repeat Characters (Case Insensitive)"
-                + "\n[C: " + this.contador.getContagemLetrasMaiusculasConsecutivas() + " | B: " + this.calculador.getBonusLetrasMaiusculasConsecutivas() + "] Consecutive Uppercase Letters"
-                + "\n[C: " + this.contador.getContagemLetrasMinusculasConsecutivas() + " | B: " + this.calculador.getBonusLetrasMinusculasConsecutivas() + "] Consecutive Lowercase Letters"
-                + "\n[C: " + this.contador.getContagemNumerosConsecutivos() + " | B: " + this.calculador.getBonusNumerosConsecutivos() + "] Consecutive Numbers"
-                + "\n[C: " + this.contador.getContagemLetrasSequenciais() + " | B: " + this.calculador.getBonusLetrasSequenciais() + "] Sequential Letters"
-                + "\n[C: " + this.contador.getContagemNumerosSequenciais() + " | B: " + this.calculador.getBonusNumerosSequenciais() + "] Sequential Numbers"
-                + "\n[C: " + this.contador.getContagemSimbolosSequenciais() + " | B: " + this.calculador.getBonusSimbolosSequenciais() + "] Sequential Symbols";
+                + "\n[C: " + contador.getContagemApenasLetras() + " | B: " + calculador.getBonusApenasLetras() + "] Letters Only"
+                + "\n[C: " + contador.getContagemApenasNumeros() + " | B: " + calculador.getBonusApenasNumeros() + "] Numbers Only"
+                + "\n[C: " + contador.getContagemCaracteresRepetidos() + " | B: " + calculador.getBonusCaracteresRepetidos() + "] Repeat Characters (Case Insensitive)"
+                + "\n[C: " + contador.getContagemLetrasMaiusculasConsecutivas() + " | B: " + calculador.getBonusLetrasMaiusculasConsecutivas() + "] Consecutive Uppercase Letters"
+                + "\n[C: " + contador.getContagemLetrasMinusculasConsecutivas() + " | B: " + calculador.getBonusLetrasMinusculasConsecutivas() + "] Consecutive Lowercase Letters"
+                + "\n[C: " + contador.getContagemNumerosConsecutivos() + " | B: " + calculador.getBonusNumerosConsecutivos() + "] Consecutive Numbers"
+                + "\n[C: " + contador.getContagemLetrasSequenciais() + " | B: " + calculador.getBonusLetrasSequenciais() + "] Sequential Letters"
+                + "\n[C: " + contador.getContagemNumerosSequenciais() + " | B: " + calculador.getBonusNumerosSequenciais() + "] Sequential Numbers"
+                + "\n[C: " + contador.getContagemSimbolosSequenciais() + " | B: " + calculador.getBonusSimbolosSequenciais() + "] Sequential Symbols";
     }
 
     public void calcularComplexidade() {
         String complexity;
 
-        if (this.score > 100) {
-            this.score = 100;
-        } else if (this.score < 0) {
-            this.score = 0;
+        if (score > 100) {
+            score = 100;
+        } else if (score < 0) {
+            score = 0;
         }
-        if (this.score < 20) {
+        if (score < 20) {
             complexity = "Very Weak";
-        } else if (this.score < 40) {
+        } else if (score < 40) {
             complexity = "Weak";
-        } else if (this.score < 60) {
+        } else if (score < 60) {
             complexity = "Good";
-        } else if (this.score < 80) {
+        } else if (score < 80) {
             complexity = "Strong";
         } else {
             complexity = "Very Strong";
         }
 
-        this.complexidade = complexity;
+        complexidade = complexity;
     }
 
-    public int obterScore() {
-        return this.score;
-    }
-
-    public String obterComplexidade(){
-        return this.complexidade;
-    }
 }
 
 

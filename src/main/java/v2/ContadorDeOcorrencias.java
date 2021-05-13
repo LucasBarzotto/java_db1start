@@ -1,5 +1,4 @@
 package v2;
-
 import static v2.Constantes.*;
 
 public class ContadorDeOcorrencias {
@@ -22,16 +21,16 @@ public class ContadorDeOcorrencias {
     private int contagemNumerosSequenciais;
     private int contagemSimbolosSequenciais;
 
-    public ContadorDeOcorrencias(String senha) {
-        this.senha = senha;
+    public ContadorDeOcorrencias(String senhaInput) {
+        senha = senhaInput;
     }
 
     public int contarOcorrenciasNumeroDeCaracteres() {
-        return this.senha.length();
+        return senha.length();
     }
 
     public int contarOcorrenciasDeAcordoComRegex(String regex) {
-        String[] caracteresDaSenha = this.senha.replaceAll("\\s+", "").split("\\s*");
+        String[] caracteresDaSenha = senha.replaceAll("\\s+", "").split("\\s*");
         int contagem = 0;
 
         for (int i = 0; i < caracteresDaSenha.length; i++) {
@@ -43,7 +42,7 @@ public class ContadorDeOcorrencias {
     }
 
     public int contarOcorrenciasNoMeioDeAcordoComRegex(String regex) {
-        String[] caracteresDaSenha = this.senha.replaceAll("\\s+", "").split("\\s*");
+        String[] caracteresDaSenha = senha.replaceAll("\\s+", "").split("\\s*");
         int contagem = 0;
 
         for (int i = 0; i < caracteresDaSenha.length; i++) {
@@ -59,10 +58,10 @@ public class ContadorDeOcorrencias {
     public int contarOcorrenciasDeRequerimentos() {
         int contagem = 0;
         Integer[] ocorrencias = new Integer[4];
-        ocorrencias[0] = this.contagemLetrasMaiusculas;
-        ocorrencias[1] = this.contagemLetrasMinusculas;
-        ocorrencias[2] = this.contagemNumeros;
-        ocorrencias[3] = this.contagemSimbolos;
+        ocorrencias[0] = contagemLetrasMaiusculas;
+        ocorrencias[1] = contagemLetrasMinusculas;
+        ocorrencias[2] = contagemNumeros;
+        ocorrencias[3] = contagemSimbolos;
 
         for (int i = 0; i < ocorrencias.length; i++) {
             if(ocorrencias[i] > 0) {
@@ -70,7 +69,7 @@ public class ContadorDeOcorrencias {
             }
         }
 
-        if (this.contagemNumeroCaracteres >= TAMANHO_MINIMO_SENHA) {
+        if (contagemNumeroCaracteres >= TAMANHO_MINIMO_SENHA) {
             contagem++;
         }
 
@@ -80,8 +79,8 @@ public class ContadorDeOcorrencias {
     public int contarOcorrenciasCasoHajaApenasLetras() {
         int contagem = 0;
 
-        if ((this.contagemLetrasMaiusculas > 0 || this.contagemLetrasMinusculas > 0) && this.contagemSimbolos == 0 && this.contagemNumeros == 0) {
-            contagem = this.senha.length();
+        if ((contagemLetrasMaiusculas > 0 || contagemLetrasMinusculas > 0) && contagemSimbolos == 0 && contagemNumeros == 0) {
+            contagem = senha.length();
         }
 
         return contagem;
@@ -90,15 +89,15 @@ public class ContadorDeOcorrencias {
     public int contarOcorrenciasCasoHajaApenasNumeros() {
         int contagem = 0;
 
-        if (this.contagemLetrasMinusculas == 0 && this.contagemLetrasMaiusculas == 0 && this.contagemSimbolos == 0 && this.contagemNumeros > 0) {
-            contagem = this.senha.length();
+        if (contagemLetrasMinusculas == 0 && contagemLetrasMaiusculas == 0 && contagemSimbolos == 0 && contagemNumeros > 0) {
+            contagem = senha.length();
         }
 
         return contagem;
     }
 
     public int contarOcorrenciasCaracteresRepetidos() {
-        String[] caracteresDaSenha = this.senha.replaceAll("\\s+", "").split("\\s*");
+        String[] caracteresDaSenha = senha.replaceAll("\\s+", "").split("\\s*");
         int contagem = 0;
 
         for (int i = 0; i < caracteresDaSenha.length; i++) {
@@ -114,7 +113,7 @@ public class ContadorDeOcorrencias {
     }
 
     public int contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex(String regex) {
-        String[] caracteresDaSenha = this.senha.replaceAll("\\s+", "").split("\\s*");
+        String[] caracteresDaSenha = senha.replaceAll("\\s+", "").split("\\s*");
         int contagem = 0;
         Integer auxiliar = null;
 
@@ -138,7 +137,7 @@ public class ContadorDeOcorrencias {
         for (int i = 0; i < tamanho; i++) {
             String tresCharSequenciais = letras.substring(i, i + 3);
             String tresCharSequenciaisReversos = new StringBuilder(tresCharSequenciais).reverse().toString();
-            if (this.senha.toLowerCase().contains(tresCharSequenciais) || this.senha.toLowerCase().contains(tresCharSequenciaisReversos)) {
+            if (senha.toLowerCase().contains(tresCharSequenciais) || senha.toLowerCase().contains(tresCharSequenciaisReversos)) {
                 contagem++;
             }
         }

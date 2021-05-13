@@ -7,29 +7,29 @@ public class ResultadoDeAnaliseLetrasSequenciais extends ResultadoDeAnalise {
 
     public ResultadoDeAnaliseLetrasSequenciais(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
-        this.incrementador = false;
+        incrementador = false;
     }
 
     @Override
     protected void calcularResultado() {
         int multiplicador = 3;
-        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasLetrasSequenciais(LETRAS);
-        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
+        contagem = contadorDeOcorrencias.contarOcorrenciasLetrasSequenciais(LETRAS);
+        bonus = calculadorDeBonus.calculadorDeBonusTipoFlat(contagem, multiplicador);
     }
 
     @Override
     protected void calcularEstado() {
-        if (this.contagem == 0) {
-            this.estado = TipoEstado.SUFICIENTE;
+        if (contagem == 0) {
+            estado = TipoEstado.SUFICIENTE;
         } else {
-            this.estado = TipoEstado.ALERTA;
+            estado = TipoEstado.ALERTA;
         }
     }
 
     @Override
     protected void setarContagemEBonus() {
-        this.contadorDeOcorrencias.setContagemLetrasSequenciais(this.contagem);
-        this.calculadorDeBonus.setBonusLetrasSequenciais(this.bonus);
+        contadorDeOcorrencias.setContagemLetrasSequenciais(contagem);
+        calculadorDeBonus.setBonusLetrasSequenciais(bonus);
     }
 
 }

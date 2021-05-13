@@ -7,31 +7,31 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
 
     public ResultadoDeAnaliseNumeroCaracteres(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
-        this.incrementador = true;
+        incrementador = true;
     }
 
     @Override
     protected void calcularResultado() {
         int multiplicador = 4;
-        this.contagem = this.contadorDeOcorrencias.contarOcorrenciasNumeroDeCaracteres();
-        this.bonus = this.calculadorDeBonus.calculadorDeBonusTipoFlat(this.contagem, multiplicador);
+        contagem = contadorDeOcorrencias.contarOcorrenciasNumeroDeCaracteres();
+        bonus = calculadorDeBonus.calculadorDeBonusTipoFlat(contagem, multiplicador);
     }
 
     @Override
     protected void calcularEstado() {
-        if (this.contagem < TAMANHO_MINIMO_SENHA) {
-            this.estado = TipoEstado.FALHA;
-        } else if (this.contagem == TAMANHO_MINIMO_SENHA) {
-            this.estado = TipoEstado.SUFICIENTE;
+        if (contagem < TAMANHO_MINIMO_SENHA) {
+            estado = TipoEstado.FALHA;
+        } else if (contagem == TAMANHO_MINIMO_SENHA) {
+            estado = TipoEstado.SUFICIENTE;
         } else {
-            this.estado = TipoEstado.EXCEPCIONAL;
+            estado = TipoEstado.EXCEPCIONAL;
         }
     }
 
     @Override
     protected void setarContagemEBonus() {
-        this.contadorDeOcorrencias.setContagemNumeroCaracteres(this.contagem);
-        this.calculadorDeBonus.setBonusNumeroCaracteres(this.bonus);
+        contadorDeOcorrencias.setContagemNumeroCaracteres(contagem);
+        calculadorDeBonus.setBonusNumeroCaracteres(bonus);
     }
 
 }
