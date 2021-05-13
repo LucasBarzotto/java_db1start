@@ -24,11 +24,19 @@ public abstract class ResultadoDeAnalise {
 
     protected abstract void setarContagemEBonus();
 
-    public abstract int obterBonus();
+    public int obterBonus() {
+        return (incrementador) ? bonus : bonus*(-1);
+    }
 
-    public abstract int obterContagem();
+    public int obterContagem() {
+        return this.contagem;
+    }
 
-    public abstract TipoEstado obterEstado();
+    public TipoEstado obterEstado() {
+        return this.estado;
+    }
 
-    public abstract boolean retornaTrueQuandoTipoIncrementador();
+    public boolean retornaTrueQuandoTipoIncrementador() {
+        return this.incrementador;
+    }
 }

@@ -1,5 +1,4 @@
 package v2.decrementadores;
-
 import v2.*;
 
 public class ResultadoDeAnaliseApenasLetras extends ResultadoDeAnalise {
@@ -31,23 +30,4 @@ public class ResultadoDeAnaliseApenasLetras extends ResultadoDeAnalise {
         this.calculadorDeBonus.setBonusApenasLetras(this.bonus);
     }
 
-    @Override
-    public int obterBonus() {
-        return (incrementador) ? bonus : bonus*(-1);
-    }
-
-    @Override
-    public int obterContagem() {
-        return this.contagem;
-    }
-
-    @Override
-    public TipoEstado obterEstado() {
-        return this.estado;
-    }
-
-    @Override
-    public boolean retornaTrueQuandoTipoIncrementador() {
-        return this.incrementador;
-    }
 }

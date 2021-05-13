@@ -1,5 +1,4 @@
 package v2.incrementadores;
-
 import v2.*;
 
 import static v2.Constantes.TAMANHO_MINIMO_SENHA;
@@ -35,23 +34,4 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
         this.calculadorDeBonus.setBonusNumeroCaracteres(this.bonus);
     }
 
-    @Override
-    public int obterBonus() {
-        return (incrementador) ? bonus : bonus*(-1);
-    }
-
-    @Override
-    public int obterContagem() {
-        return this.contagem;
-    }
-
-    @Override
-    public TipoEstado obterEstado() {
-        return this.estado;
-    }
-
-    @Override
-    public boolean retornaTrueQuandoTipoIncrementador() {
-        return this.incrementador;
-    }
 }

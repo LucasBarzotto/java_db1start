@@ -1,5 +1,4 @@
 package v2.incrementadores;
-
 import v2.*;
 
 public class ResultadoDeAnaliseSimbolosENumerosNoMeio extends ResultadoDeAnalise {
@@ -33,23 +32,4 @@ public class ResultadoDeAnaliseSimbolosENumerosNoMeio extends ResultadoDeAnalise
         this.calculadorDeBonus.setBonusSimbolosENumerosNoMeio(this.bonus);
     }
 
-    @Override
-    public int obterBonus() {
-        return (incrementador) ? bonus : bonus*(-1);
-    }
-
-    @Override
-    public int obterContagem() {
-        return this.contagem;
-    }
-
-    @Override
-    public TipoEstado obterEstado() {
-        return this.estado;
-    }
-
-    @Override
-    public boolean retornaTrueQuandoTipoIncrementador() {
-        return this.incrementador;
-    }
 }

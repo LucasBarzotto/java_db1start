@@ -33,23 +33,4 @@ public class ResultadoDeAnaliseLetrasMaiusculas extends ResultadoDeAnalise {
         this.calculadorDeBonus.setBonusLetrasMaiusculas(this.bonus);
     }
 
-    @Override
-    public int obterBonus() {
-        return (incrementador) ? bonus : bonus*(-1);
-    }
-
-    @Override
-    public int obterContagem() {
-        return this.contagem;
-    }
-
-    @Override
-    public TipoEstado obterEstado() {
-        return this.estado;
-    }
-
-    @Override
-    public boolean retornaTrueQuandoTipoIncrementador() {
-        return this.incrementador;
-    }
 }
