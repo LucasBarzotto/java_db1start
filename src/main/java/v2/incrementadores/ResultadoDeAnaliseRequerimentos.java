@@ -9,6 +9,7 @@ public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
     public ResultadoDeAnaliseRequerimentos (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
         incrementador = true;
+        calcularEstadoParaIncrementadores();
     }
 
     @Override
@@ -19,7 +20,7 @@ public class ResultadoDeAnaliseRequerimentos extends ResultadoDeAnalise {
     }
 
     @Override
-    protected void calcularEstado() {
+    protected void calcularEstadoParaIncrementadores() {
         if (senha.length() >= TAMANHO_MINIMO_SENHA && contagem == 5) {
             estado = TipoEstado.EXCEPCIONAL;
         } else if (senha.length() >= TAMANHO_MINIMO_SENHA && contagem == 4) {

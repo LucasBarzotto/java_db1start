@@ -8,6 +8,7 @@ public class ResultadoDeAnaliseSimbolosSequenciais extends ResultadoDeAnalise {
     public ResultadoDeAnaliseSimbolosSequenciais(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
         incrementador = false;
+        calcularEstadoParaDecrementadores();
     }
 
     @Override
@@ -15,11 +16,6 @@ public class ResultadoDeAnaliseSimbolosSequenciais extends ResultadoDeAnalise {
         int multiplicador = 3;
         contagem = contadorDeOcorrencias.contarOcorrenciasLetrasSequenciais(SIMBOLOS);
         bonus = calculadorDeBonus.calculadorDeBonusTipoFlat(contagem, multiplicador);
-    }
-
-    @Override
-    protected void calcularEstado() {
-        estado = (contagem == 0) ? TipoEstado.SUFICIENTE : TipoEstado.ALERTA;
     }
 
     @Override

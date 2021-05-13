@@ -14,13 +14,24 @@ public abstract class ResultadoDeAnalise {
         contadorDeOcorrencias = contador;
         calculadorDeBonus = calculador;
         calcularResultado();
-        calcularEstado();
         setarContagemEBonus();
     }
 
     protected abstract void calcularResultado();
 
-    protected abstract void calcularEstado();
+    protected void calcularEstadoParaIncrementadores() {
+        if (contagem == 0) {
+            estado = TipoEstado.FALHA;
+        } else if (contagem == 1) {
+            estado = TipoEstado.SUFICIENTE;
+        } else {
+            estado = TipoEstado.EXCEPCIONAL;
+        }
+    }
+
+    protected void calcularEstadoParaDecrementadores() {
+        estado = (contagem == 0) ? TipoEstado.SUFICIENTE : TipoEstado.ALERTA;
+    }
 
     protected abstract void setarContagemEBonus();
 

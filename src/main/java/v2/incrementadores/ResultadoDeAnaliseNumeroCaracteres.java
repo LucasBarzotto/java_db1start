@@ -8,6 +8,7 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
     public ResultadoDeAnaliseNumeroCaracteres(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
         incrementador = true;
+        calcularEstadoParaIncrementadores();
     }
 
     @Override
@@ -18,7 +19,7 @@ public class ResultadoDeAnaliseNumeroCaracteres extends ResultadoDeAnalise {
     }
 
     @Override
-    protected void calcularEstado() {
+    protected void calcularEstadoParaIncrementadores() {
         if (contagem < TAMANHO_MINIMO_SENHA) {
             estado = TipoEstado.FALHA;
         } else if (contagem == TAMANHO_MINIMO_SENHA) {

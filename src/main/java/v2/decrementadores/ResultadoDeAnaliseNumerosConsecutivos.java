@@ -6,6 +6,7 @@ public class ResultadoDeAnaliseNumerosConsecutivos extends ResultadoDeAnalise {
     public ResultadoDeAnaliseNumerosConsecutivos(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
         incrementador = false;
+        calcularEstadoParaDecrementadores();
     }
 
     @Override
@@ -13,11 +14,6 @@ public class ResultadoDeAnaliseNumerosConsecutivos extends ResultadoDeAnalise {
         int multiplicador = 2;
         contagem = contadorDeOcorrencias.contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex("[0-9]");
         bonus = calculadorDeBonus.calculadorDeBonusTipoFlat(contagem, multiplicador);
-    }
-
-    @Override
-    protected void calcularEstado() {
-        estado = (contagem == 0) ? TipoEstado.SUFICIENTE : TipoEstado.ALERTA;
     }
 
     @Override

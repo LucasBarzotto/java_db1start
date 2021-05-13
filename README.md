@@ -11,4 +11,5 @@ Commit 1950bc2: 2345 linhas de código | 41 arquivos | 597 linhas em branco<br /
 Commit dedb963: 2231 linhas de código | 41 arquivos | 553 linhas em branco<br />
 Commit 7913a78: 1983 linhas de código | 41 arquivos | 490 linhas em branco<br />
 Commit d73fd8a: 1977 linhas de código | 41 arquivos | 486 linhas em branco<br />
-Commit *******: 1890 linhas de código | 41 arquivos | 477 linhas em branco<br />
+Commit b0d61a6: 1890 linhas de código | 41 arquivos | 477 linhas em branco<br />
+Commit *******: 1830 linhas de código | 41 arquivos | 464 linhas em branco<br />

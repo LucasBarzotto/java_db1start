@@ -6,6 +6,7 @@ public class ResultadoDeAnaliseLetrasMinusculasConsecutivas extends ResultadoDeA
     public ResultadoDeAnaliseLetrasMinusculasConsecutivas(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
         incrementador = false;
+        calcularEstadoParaDecrementadores();
     }
 
     @Override
@@ -13,11 +14,6 @@ public class ResultadoDeAnaliseLetrasMinusculasConsecutivas extends ResultadoDeA
         int multiplicador = 2;
         contagem = contadorDeOcorrencias.contarOcorrenciasCaracteresConsecutivosDeAcordoComRegex("[a-z]");
         bonus = calculadorDeBonus.calculadorDeBonusTipoFlat(contagem, multiplicador);
-    }
-
-    @Override
-    protected void calcularEstado() {
-        estado = (contagem == 0) ? TipoEstado.SUFICIENTE : TipoEstado.ALERTA;
     }
 
     @Override

@@ -6,6 +6,7 @@ public class ResultadoDeAnaliseApenasLetras extends ResultadoDeAnalise {
     public ResultadoDeAnaliseApenasLetras(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
         super(senha, contador, calculador);
         incrementador = false;
+        calcularEstadoParaDecrementadores();
     }
 
     @Override
@@ -13,11 +14,6 @@ public class ResultadoDeAnaliseApenasLetras extends ResultadoDeAnalise {
         int multiplicador = 1;
         contagem = contadorDeOcorrencias.contarOcorrenciasCasoHajaApenasLetras();
         bonus = calculadorDeBonus.calculadorDeBonusTipoFlat(contagem, multiplicador);
-    }
-
-    @Override
-    protected void calcularEstado() {
-        estado = (contagem == 0) ? TipoEstado.SUFICIENTE : TipoEstado.ALERTA;
     }
 
     @Override
