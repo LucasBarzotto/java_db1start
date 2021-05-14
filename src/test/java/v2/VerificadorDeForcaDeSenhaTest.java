@@ -1,6 +1,9 @@
 package v2;
+
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static v2.Main.construirInstanciasParaVerificarSenha;
 
 class VerificadorDeForcaDeSenhaTest {
 
@@ -29,7 +32,7 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Numbers\n" +
                 "[C: 0 | B: 0] Sequential Symbols";
 
-        var verificadorDeForcaDeSenha = testSetup(senha);
+        var verificadorDeForcaDeSenha = construirInstanciasParaVerificarSenha(senha);
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -58,7 +61,7 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 1 | B: 3] Sequential Numbers\n" +
                 "[C: 0 | B: 0] Sequential Symbols";
 
-        var verificadorDeForcaDeSenha = testSetup(senha);
+        var verificadorDeForcaDeSenha = construirInstanciasParaVerificarSenha(senha);
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -87,7 +90,7 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Numbers\n" +
                 "[C: 0 | B: 0] Sequential Symbols";
 
-        var verificadorDeForcaDeSenha = testSetup(senha);
+        var verificadorDeForcaDeSenha = construirInstanciasParaVerificarSenha(senha);
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -116,7 +119,7 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 1 | B: 3] Sequential Numbers\n" +
                 "[C: 0 | B: 0] Sequential Symbols";
 
-        var verificadorDeForcaDeSenha = testSetup(senha);
+        var verificadorDeForcaDeSenha = construirInstanciasParaVerificarSenha(senha);
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -145,14 +148,7 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Numbers\n" +
                 "[C: 0 | B: 0] Sequential Symbols";
 
-        var verificadorDeForcaDeSenha = testSetup(senha);
+        var verificadorDeForcaDeSenha = construirInstanciasParaVerificarSenha(senha);
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
-    }
-
-    private VerificadorDeForcaDeSenha testSetup (String senha) {
-        ContadorDeOcorrencias contadorDeOcorrencias = new ContadorDeOcorrencias(senha);
-        CalculadorDeBonus calculadorDeBonus = new CalculadorDeBonus(senha);
-        var verificadorDeForcaDeSenha = new VerificadorDeForcaDeSenha(senha, contadorDeOcorrencias, calculadorDeBonus);
-        return verificadorDeForcaDeSenha;
     }
 }

@@ -17,36 +17,9 @@ public class VerificadorDeForcaDeSenha {
         senha = senhaInput;
         contador = contadorDeOcorrencias;
         calculador = calculadorDeBonus;
-        calcularScore();
-        calcularComplexidade();
     }
 
-    public void calcularScore(){
-
-        ArrayList<ResultadoDeAnalise> listaDeAnalises = new ArrayList<>();
-
-        // ADDITIONS
-        listaDeAnalises.add(new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculas(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseNumeros(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolos(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosENumerosNoMeio(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseRequerimentos(senha, contador, calculador));
-
-        // DEDUCTIONS
-        listaDeAnalises.add(new ResultadoDeAnaliseApenasLetras(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseApenasNumeros(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseCaracteresRepetidos(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMaiusculasConsecutivas(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasMinusculasConsecutivas(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseNumerosConsecutivos(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseLetrasSequenciais(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseNumerosSequenciais(senha, contador, calculador));
-        listaDeAnalises.add(new ResultadoDeAnaliseSimbolosSequenciais(senha, contador, calculador));
-
-        // CALCULO
-
+    public void calcularScore(ArrayList<ResultadoDeAnalise> listaDeAnalises){
         for (ResultadoDeAnalise analise : listaDeAnalises) {
             score += analise.obterBonus();
         }
