@@ -1,8 +1,5 @@
 package v2;
 
-import v2.decrementadores.*;
-import v2.incrementadores.*;
-
 import java.util.ArrayList;
 
 public class VerificadorDeForcaDeSenha {
@@ -12,14 +9,16 @@ public class VerificadorDeForcaDeSenha {
     private String senha;
     private ContadorDeOcorrencias contador;
     private CalculadorDeBonus calculador;
+    private ArrayList<ResultadoDeAnalise> listaDeAnalises;
 
-    public VerificadorDeForcaDeSenha(String senhaInput, ContadorDeOcorrencias contadorDeOcorrencias, CalculadorDeBonus calculadorDeBonus) {
-        senha = senhaInput;
-        contador = contadorDeOcorrencias;
-        calculador = calculadorDeBonus;
+    public VerificadorDeForcaDeSenha(String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador, ArrayList<ResultadoDeAnalise> listaDeAnalises) {
+        this.senha = senha;
+        this.contador = contador;
+        this.calculador = calculador;
+        this.listaDeAnalises = listaDeAnalises;
     }
 
-    public void calcularScore(ArrayList<ResultadoDeAnalise> listaDeAnalises){
+    public void calcularScore(){
         for (ResultadoDeAnalise analise : listaDeAnalises) {
             score += analise.obterBonus();
         }

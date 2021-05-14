@@ -30,9 +30,9 @@ public class Main {
     public static VerificadorDeForcaDeSenha construirInstanciasParaVerificarSenha(String senha) {
         ContadorDeOcorrencias contadorDeOcorrencias = new ContadorDeOcorrencias(senha);
         CalculadorDeBonus calculadorDeBonus = new CalculadorDeBonus(senha);
-        var verificadorDeForcaDeSenha = new VerificadorDeForcaDeSenha(senha, contadorDeOcorrencias, calculadorDeBonus);
         var listaDeAnalises = criarListaDeAnalises(senha, contadorDeOcorrencias, calculadorDeBonus);
-        verificadorDeForcaDeSenha.calcularScore(listaDeAnalises);
+        var verificadorDeForcaDeSenha = new VerificadorDeForcaDeSenha(senha, contadorDeOcorrencias, calculadorDeBonus, listaDeAnalises);
+        verificadorDeForcaDeSenha.calcularScore();
         verificadorDeForcaDeSenha.calcularComplexidade();
         return verificadorDeForcaDeSenha;
     }
