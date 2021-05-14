@@ -1,55 +1,32 @@
 package v2.decrementadores;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import v2.CalculadorDeBonus;
 import v2.ContadorDeOcorrencias;
 import v2.TipoEstado;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static v2.TestadorDeSenha.testarSenha;
 
 class ResultadoDeAnaliseCaracteresRepetidosTest {
 
     @Test
     void deveObterValoresEsperadosQuandoTesteDeSenhaVazia() {
         String senha = "";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = new ResultadoDeAnaliseCaracteresRepetidos(senha, contador, calculador);
-
-        assertEquals(0, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        Assertions.assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        Assertions.assertEquals(false, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseCaracteresRepetidos(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 0, 0, TipoEstado.SUFICIENTE, false);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaNaoContiverCaracteresRepetidos() {
         String senha = "abcdefg123456!@#$";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = new ResultadoDeAnaliseCaracteresRepetidos(senha, contador, calculador);
-
-        assertEquals(0, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(false, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseCaracteresRepetidos(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 0, 0, TipoEstado.SUFICIENTE, false);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverCaracteresRepetidos() {
         String senha = "aaabbb12UHAS12BA555";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = new ResultadoDeAnaliseCaracteresRepetidos(senha, contador, calculador);
-
-        assertEquals(15, resultado.obterContagem());
-        assertEquals(-10, resultado.obterBonus());
-        assertEquals(TipoEstado.ALERTA, resultado.obterEstado());
-        assertEquals(false, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseCaracteresRepetidos(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 15, -10, TipoEstado.ALERTA, false);
     }
 
 }

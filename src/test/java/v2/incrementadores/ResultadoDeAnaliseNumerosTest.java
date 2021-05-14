@@ -1,77 +1,45 @@
 package v2.incrementadores;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import v2.CalculadorDeBonus;
 import v2.ContadorDeOcorrencias;
 import v2.TipoEstado;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static v2.TestadorDeSenha.testarSenha;
 
 class ResultadoDeAnaliseNumerosTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
         String senha = "";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
-
-        assertEquals(0, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        Assertions.assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        Assertions.assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeros(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 0, 0, TipoEstado.FALHA, true);
     }
 
     @Test
     void deveObterValoresZeradosQuandoSenhaNaoContiverNumeros() {
         String senha = "ASUH#jsasn$";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
-
-        assertEquals(0, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeros(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 0, 0, TipoEstado.FALHA, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverUmNumero() {
         String senha = "ASDIj2as(#";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
-
-        assertEquals(1, resultado.obterContagem());
-        assertEquals(4, resultado.obterBonus());
-        assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeros(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 1, 4, TipoEstado.SUFICIENTE, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverMaisQueUmNumero() {
         String senha = "A2SD3Ij2as(#";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
-
-        assertEquals(3, resultado.obterContagem());
-        assertEquals(12, resultado.obterBonus());
-        assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeros(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 3, 12, TipoEstado.EXCEPCIONAL, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverApenasNumeros() {
         String senha = "665165184982";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
-
-        assertEquals(12, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeros(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 12, 0, TipoEstado.EXCEPCIONAL, true);
     }
 }

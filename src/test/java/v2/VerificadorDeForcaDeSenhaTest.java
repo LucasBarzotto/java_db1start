@@ -1,7 +1,5 @@
 package v2;
-
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class VerificadorDeForcaDeSenhaTest {
@@ -32,7 +30,6 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Symbols";
 
         var verificadorDeForcaDeSenha = testSetup(senha);
-
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -62,7 +59,6 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Symbols";
 
         var verificadorDeForcaDeSenha = testSetup(senha);
-
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -92,7 +88,6 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Symbols";
 
         var verificadorDeForcaDeSenha = testSetup(senha);
-
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -122,7 +117,6 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Symbols";
 
         var verificadorDeForcaDeSenha = testSetup(senha);
-
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 
@@ -152,7 +146,6 @@ class VerificadorDeForcaDeSenhaTest {
                 "[C: 0 | B: 0] Sequential Symbols";
 
         var verificadorDeForcaDeSenha = testSetup(senha);
-
         assertEquals(esperado, verificadorDeForcaDeSenha.obterStringDeSaida());
     }
 

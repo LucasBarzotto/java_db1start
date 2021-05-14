@@ -1,96 +1,57 @@
 package v2.incrementadores;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import v2.*;
+import v2.CalculadorDeBonus;
+import v2.ContadorDeOcorrencias;
+import v2.TipoEstado;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static v2.TestadorDeSenha.testarSenha;
 
 class ResultadoDeAnaliseRequerimentosTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
         String senha = "";
-
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = testSetup(senha, contador, calculador);
-
-        assertEquals(0, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        Assertions.assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        Assertions.assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = testSetup(senha);
+        testarSenha(resultado, 0, 0, TipoEstado.FALHA, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaMenorQueTamanhoMinimo() {
         String senha = "A3#gacA";
-
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = testSetup(senha, contador, calculador);
-
-        assertEquals(4, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = testSetup(senha);
+        testarSenha(resultado, 4, 0, TipoEstado.FALHA, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaNaoContiverRequerimentosSuficientes() {
         String senha = "AbcdeOUHShaso";
-
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = testSetup(senha, contador, calculador);
-
-        assertEquals(3, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = testSetup(senha);
+        testarSenha(resultado, 3, 0, TipoEstado.FALHA, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverRequerimentosSuficientes() {
         String senha = "AbcdeOUHShaso1";
-
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = testSetup(senha, contador, calculador);
-
-        assertEquals(4, resultado.obterContagem());
-        assertEquals(8, resultado.obterBonus());
-        assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = testSetup(senha);
+        testarSenha(resultado, 4, 8, TipoEstado.SUFICIENTE, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverRequerimentosExcepcionais() {
         String senha = "Abcde#OUHShaso1";
-
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-
-        var resultado = testSetup(senha, contador, calculador);
-
-        assertEquals(5, resultado.obterContagem());
-        assertEquals(10, resultado.obterBonus());
-        assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = testSetup(senha);
+        testarSenha(resultado, 5, 10, TipoEstado.EXCEPCIONAL, true);
     }
 
-    private ResultadoDeAnaliseRequerimentos testSetup (String senha, ContadorDeOcorrencias contador, CalculadorDeBonus calculador) {
-        var res1 = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
-        var res2 = new ResultadoDeAnaliseLetrasMaiusculas(senha, contador, calculador);
-        var res3 = new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador);
-        var res4 = new ResultadoDeAnaliseNumeros(senha, contador, calculador);
-        var res5 = new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
+    private ResultadoDeAnaliseRequerimentos testSetup (String senha) {
+        ContadorDeOcorrencias contador = new ContadorDeOcorrencias(senha);
+        CalculadorDeBonus calculador = new CalculadorDeBonus(senha);
+        new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
+        new ResultadoDeAnaliseLetrasMaiusculas(senha, contador, calculador);
+        new ResultadoDeAnaliseLetrasMinusculas(senha, contador, calculador);
+        new ResultadoDeAnaliseNumeros(senha, contador, calculador);
+        new ResultadoDeAnaliseSimbolos(senha, contador, calculador);
 
-        var resultado = new ResultadoDeAnaliseRequerimentos(senha, contador, calculador);
-        return resultado;
+        return new ResultadoDeAnaliseRequerimentos(senha, contador, calculador);
     }
 }

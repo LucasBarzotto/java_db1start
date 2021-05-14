@@ -1,5 +1,4 @@
 package v2;
-
 import java.util.Scanner;
 
 public class InterfaceUsuario {
@@ -18,9 +17,7 @@ public class InterfaceUsuario {
 
     public String obterSenhaDoUsuario() {
         System.out.print("Digite a senha: ");
-        String senha = scanner.nextLine();
-        System.out.println("");
-        return senha;
+        return scanner.nextLine();
     }
 
     public void imprimirSaida(String saida) {
@@ -32,8 +29,6 @@ public class InterfaceUsuario {
 
     public boolean verificarSeRepeteOuFinaliza() {
         System.out.println("Deseja verificar outra senha? y/n");
-        char resposta = scanner.nextLine().charAt(0);
-
-        return (resposta == 'y') ? true : false;
+        return (scanner.nextLine().charAt(0) == 'y') ? true : false;
     }
 }

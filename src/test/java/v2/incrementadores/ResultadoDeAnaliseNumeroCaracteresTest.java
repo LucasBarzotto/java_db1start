@@ -1,65 +1,39 @@
 package v2.incrementadores;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import v2.CalculadorDeBonus;
 import v2.ContadorDeOcorrencias;
 import v2.TipoEstado;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static v2.TestadorDeSenha.testarSenha;
 
 class ResultadoDeAnaliseNumeroCaracteresTest {
 
     @Test
     void deveObterValoresZeradosQuandoTesteDeSenhaVazia() {
         String senha = "";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
-
-        assertEquals(0, resultado.obterContagem());
-        assertEquals(0, resultado.obterBonus());
-        Assertions.assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        Assertions.assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 0, 0, TipoEstado.FALHA, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverCaracteresAbaixoDoMinimo() {
         String senha = "123456";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
-
-        assertEquals(6, resultado.obterContagem());
-        assertEquals(24, resultado.obterBonus());
-        assertEquals(TipoEstado.FALHA, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 6, 24, TipoEstado.FALHA, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverCaracteresIgualAoMinimo() {
         String senha = "abc123de";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
-
-        assertEquals(8, resultado.obterContagem());
-        assertEquals(32, resultado.obterBonus());
-        assertEquals(TipoEstado.SUFICIENTE, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 8, 32, TipoEstado.SUFICIENTE, true);
     }
 
     @Test
     void deveObterValoresEsperadosQuandoSenhaContiverCaracteresAcimaDoMinimo() {
         String senha = "abc123de@#";
-        var contador = new ContadorDeOcorrencias(senha);
-        var calculador = new CalculadorDeBonus(senha);
-        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, contador, calculador);
-
-        assertEquals(10, resultado.obterContagem());
-        assertEquals(40, resultado.obterBonus());
-        assertEquals(TipoEstado.EXCEPCIONAL, resultado.obterEstado());
-        assertEquals(true, resultado.retornaTrueQuandoTipoIncrementador());
+        var resultado = new ResultadoDeAnaliseNumeroCaracteres(senha, new ContadorDeOcorrencias(senha), new CalculadorDeBonus(senha));
+        testarSenha(resultado, 10, 40, TipoEstado.EXCEPCIONAL, true);
     }
 
 }
